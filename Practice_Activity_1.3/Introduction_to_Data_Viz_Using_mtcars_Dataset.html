@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>The Palmer Penguins dataset had a variety of column types with which to explore some nice visualizations. The <code>mtcars</code> dataset is another popular dataset for doing some simple data work, but does not contain the same types of variables.</p>
 <p>Run the following code to load the <code>mtcars</code> dataset and explore the observations and variables contained within. To learn more about this dataset check out <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">this site</a></p>
-<div id="cell-2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:12.672996Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:12.650859Z&quot;}" data-execution_count="229">
+<div id="cell-2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:24.187147Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.164700Z&quot;}" data-execution_count="242">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> ggplot, geom_point, aes, geom_boxplot, geom_histogram, geom_bar</span>
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The statement “the <code>mtcars</code> dataset does not contain the same types of variables as the penguins dataset” is a little true and a little false. There are no variables that contain text values, BUT there are variables that it makes sense to consider categorical variables. In most situations, it makes sense to treat the values of categorical variables as text values instead of numeric values.</p>
 <p>Use the <code>astype()</code> method to convert the categorical variables of the <code>mtcars</code> (df) dataset to have text values in the code chunk below. We’ve done one for you!</p>
-<div id="cell-4" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:12.690532Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:12.685005Z&quot;}" data-execution_count="230">
+<div id="cell-4" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:24.218090Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.212902Z&quot;}" data-execution_count="243">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"am"</span>] <span class="op">=</span> df[<span class="st">"am"</span>].astype(<span class="bu">str</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the other variables below</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'vs'</span>] <span class="op">=</span> df[<span class="st">"vs"</span>].astype(<span class="bu">str</span>)</span>
@@ -121,9 +121,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'gear'</span>] <span class="op">=</span> df[<span class="st">"gear"</span>].astype(<span class="bu">str</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'carb'</span>] <span class="op">=</span> df[<span class="st">"carb"</span>].astype(<span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:12.717113Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:12.707105Z&quot;}" data-execution_count="231">
+<div id="cell-5" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:24.247397Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.237633Z&quot;}" data-execution_count="244">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="231">
+<div class="cell-output cell-output-display" data-execution_count="244">
 <div>
 
 
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Create side-by-side boxplots of the <code>mpg</code> variable by the different values of the <code>am</code> variable. What happens if you convert the <code>am</code> variable back to float values and then try to create this same plot? Explain the differences between the two plots.</p></li>
 <li><p>Create overlaid histograms of the <code>hp</code> variable for the different values of the <code>cyl</code> variable. What happens if you convert the <code>cyl</code> variable back to float values and then try to create this same plot? Explain the differences between the two plots.</p></li>
 </ol>
-<div id="cell-7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:12.954456Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:12.763211Z&quot;}" data-execution_count="232">
+<div id="cell-7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:24.507927Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.332449Z&quot;}" data-execution_count="245">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot for (2) here</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x<span class="op">=</span><span class="st">"am"</span>, y<span class="op">=</span><span class="st">"mpg"</span>, fill<span class="op">=</span><span class="st">"am"</span>)) <span class="op">+</span> geom_boxplot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-8" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.163924Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:12.987062Z&quot;}" data-execution_count="233">
+<div id="cell-8" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:24.716688Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.571367Z&quot;}" data-execution_count="246">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If `am` were a float, it would cause issues in ggplot</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"am"</span>] <span class="op">=</span> df[<span class="st">"am"</span>].astype(<span class="bu">float</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x<span class="op">=</span><span class="st">"am"</span>, y<span class="op">=</span><span class="st">"mpg"</span>, fill<span class="op">=</span><span class="st">"am"</span>)) <span class="op">+</span> geom_boxplot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-9" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.341320Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:13.173941Z&quot;}" data-execution_count="234">
+<div id="cell-9" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:24.921013Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.778621Z&quot;}" data-execution_count="247">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot for (2) here</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlaid histogram for categorical `cyl`</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x<span class="op">=</span><span class="st">"hp"</span>, fill<span class="op">=</span><span class="st">"cyl"</span>)) <span class="op">+</span> geom_histogram(alpha <span class="op">=</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-10" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.489280Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:13.360078Z&quot;}" data-execution_count="235">
+<div id="cell-10" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:25.053055Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:24.936158Z&quot;}" data-execution_count="248">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If `cyl` were a float:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"cyl"</span>] <span class="op">=</span> df[<span class="st">"cyl"</span>].astype(<span class="bu">float</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x<span class="op">=</span><span class="st">"hp"</span>, fill<span class="op">=</span><span class="st">"cyl"</span>)) <span class="op">+</span> geom_histogram()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.505994Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:13.503277Z&quot;}" data-execution_count="236">
+<div id="cell-11" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:25.091184Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:25.087986Z&quot;}" data-execution_count="249">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to str</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"am"</span>] <span class="op">=</span> df[<span class="st">"am"</span>].astype(<span class="bu">str</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cyl'</span>] <span class="op">=</span> df[<span class="st">"cyl"</span>].astype(<span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Some of these variables, like the <code>cyl</code> variable, have numeric values that actually make sense as numbers (i.e.&nbsp;the number of cylinders in the engine). However, it doesn’t make the most sense to “do math” with this type of variable (e.g.&nbsp;take averages and such) because there are so few different value this can take on AND they’re an explicit choice made by the car manufacturer. So, it makes more sense to treat the <code>cyl</code> variable as a categorical variable despite it having numeric values.</p>
 <p>You will need to keep these kinds of nuances about data in mind as you work with an increasing variety and richness of data, and do more complex things with them.</p>
 <p>Choose 3 new <code>geometries</code> from the <a href="https://www.data-to-viz.com/">data-to-viz website</a> for graphs that you’d like to explore using the <code>mtcars</code> dataset, and then create those graphs!</p>
-<div id="cell-13" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.677114Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:13.518330Z&quot;}" data-execution_count="237">
+<div id="cell-13" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:25.268824Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:25.105999Z&quot;}" data-execution_count="250">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot with first new geometry here</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"white"</span>, color_codes<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span>df[<span class="st">"hp"</span>], y <span class="op">=</span> df[<span class="st">"mpg"</span>],  kind<span class="op">=</span><span class="st">'scatter'</span>, color<span class="op">=</span><span class="st">"skyblue"</span>)</span>
@@ -316,9 +316,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-14" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.803132Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:13.690905Z&quot;}" data-execution_count="238">
+<div id="cell-14" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:25.400907Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:25.281608Z&quot;}" data-execution_count="251">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot with second new geometry here</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x<span class="op">=</span><span class="st">"cyl"</span>, fill<span class="op">=</span><span class="st">"vs"</span>)) <span class="op">+</span> geom_bar(position<span class="op">=</span><span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(x<span class="op">=</span><span class="st">"vs"</span>, fill<span class="op">=</span><span class="st">"gear"</span>)) <span class="op">+</span> geom_bar(position<span class="op">=</span><span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:46:13.890084Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:46:13.822027Z&quot;}" data-execution_count="239">
+<div id="cell-15" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-25T19:53:25.485843Z&quot;,&quot;start_time&quot;:&quot;2024-09-25T19:53:25.419729Z&quot;}" data-execution_count="252">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot with third new geometry here</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sns.violinplot(x<span class="op">=</span>df[<span class="st">"cyl"</span>], y<span class="op">=</span>df[<span class="st">"qsec"</span>])</span>
