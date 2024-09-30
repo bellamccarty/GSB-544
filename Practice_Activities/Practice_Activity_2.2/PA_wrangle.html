@@ -3153,13 +3153,19 @@ vertical-align: -.125em;
 <p>First, we declare our package dependencies and load the data.</p>
 <p>(Note that the data loading function <code>read_csv</code> will give you an outpouring of helpful information about the dataset. If you do not see the word “error”, there is nothing to be concerned about.)</p>
 <div id="cell-2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:00.872836Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:00.867795Z&quot;}" data-execution_count="456">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tomlkit <span class="im">import</span> float_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="cell-3" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:02.670976Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:00.919762Z&quot;}" data-execution_count="457">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>colleges <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=1&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>colleges.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="457">
 <div>
 
@@ -3326,8 +3332,11 @@ vertical-align: -.125em;
 <p>There are too many variables in this dataset. We don’t need all of them. We will limit our dataset down to only:</p>
 <p>Name of the institution City, State, and ZIP code of the institution The Admissions Rate The average SAT score The number of undergraduate students The in and out of state tuitions Whether the school is public or private The “REGION” variable.</p>
 <div id="cell-5" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:02.765615Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:02.747711Z&quot;}" data-execution_count="458">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="op">=</span> colleges[[<span class="st">&#39;INSTNM&#39;</span>, <span class="st">&#39;CITY&#39;</span>, <span class="st">&#39;STABBR&#39;</span>, <span class="st">&#39;ZIP&#39;</span>, <span class="st">&#39;CONTROL&#39;</span>, <span class="st">&#39;ADM_RATE&#39;</span>, <span class="st">&#39;SAT_AVG&#39;</span>, <span class="st">&#39;TUITIONFEE_IN&#39;</span>, <span class="st">&#39;TUITIONFEE_OUT&#39;</span>, <span class="st">&#39;UGDS&#39;</span>, <span class="st">&#39;REGION&#39;</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>colleges_clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="458">
 <div>
 
@@ -3431,8 +3440,11 @@ vertical-align: -.125em;
 <h4 class="anchored" data-anchor-id="remove-observations-that-arent-needed">2. Remove observations that aren’t needed</h4>
 <p>Drop the schools that are “private for-profit” (category 3). We will not need these for the puzzle.</p>
 <div id="cell-7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:02.900319Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:02.882255Z&quot;}" data-execution_count="459">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="op">=</span> colleges_clean[colleges_clean[<span class="st">&#39;CONTROL&#39;</span>] <span class="op">!=</span> <span class="dv">3</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>colleges_clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="459">
 <div>
 
@@ -3537,6 +3549,8 @@ vertical-align: -.125em;
 <p>Some of the columns of the dataset were automatically understood by the computer to be categorical, due to missing data appearing like strings.</p>
 <p>Adjust the appropriate columns to be numeric.</p>
 <div id="cell-9" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:03.129076Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:03.108448Z&quot;}" data-execution_count="460">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>colleges_clean[<span class="st">&#39;TUITIONFEE_IN&#39;</span>] <span class="op">=</span> colleges_clean[<span class="st">&#39;TUITIONFEE_IN&#39;</span>].astype(<span class="bu">float</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>colleges_clean[<span class="st">&#39;TUITIONFEE_OUT&#39;</span>] <span class="op">=</span> colleges_clean[<span class="st">&#39;TUITIONFEE_OUT&#39;</span>].astype(<span class="bu">float</span>)</span>
@@ -3546,6 +3560,7 @@ vertical-align: -.125em;
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>colleges_clean[<span class="st">&#39;ADM_RATE&#39;</span>] <span class="op">=</span> colleges_clean[<span class="st">&#39;ADM_RATE&#39;</span>].astype(<span class="bu">float</span>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>colleges_clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="460">
 <div>
 
@@ -3651,15 +3666,21 @@ vertical-align: -.125em;
 <p>We know, however, that some variables are truly <em>categorical</em>, in that there are only a few categories (or “levels”) that can be values of the column.</p>
 <p>Adjust the appropriate columns to be understood as categorical.</p>
 <div id="cell-11" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:03.371529Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:03.366291Z&quot;}" data-execution_count="461">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>colleges_clean[<span class="st">&#39;CONTROL&#39;</span>] <span class="op">=</span> colleges_clean[<span class="st">&#39;CONTROL&#39;</span>].astype(<span class="st">&#39;category&#39;</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>colleges_clean[<span class="st">&#39;REGION&#39;</span>] <span class="op">=</span> colleges_clean[<span class="st">&#39;REGION&#39;</span>].astype(<span class="st">&#39;category&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="calculate-new-variables" class="level4">
 <h4 class="anchored" data-anchor-id="calculate-new-variables">5. Calculate new variables</h4>
 <p>Create a new variable called TUITION_DIFF which contains the difference between in and out of state costs.</p>
 <div id="cell-13" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:03.550624Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:03.534294Z&quot;}" data-execution_count="462">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>colleges_clean[<span class="st">&#39;TUITION_DIFF&#39;</span>] <span class="op">=</span> colleges_clean[<span class="st">&quot;TUITIONFEE_OUT&quot;</span>] <span class="op">-</span> colleges_clean[<span class="st">&quot;TUITIONFEE_IN&quot;</span>]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>colleges_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>colleges_clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="462">
 <div>
 
@@ -3861,8 +3882,11 @@ vertical-align: -.125em;
 <p>Drop all the rows with missing data.</p>
 <p>(It is often a terrible idea to simply drop all rows with <em>any</em> missing data! Usually, even if <em>some</em> of the information is missing, we don’t want to throw out the entire row. In this example, however, we’ll be lazy.)</p>
 <div id="cell-15" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:03.710663Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:03.691743Z&quot;}" data-execution_count="463">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="op">=</span> colleges_clean.dropna(axis <span class="op">=</span> <span class="dv">0</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>colleges_clean.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="463">
 <div>
 
@@ -3985,9 +4009,14 @@ vertical-align: -.125em;
 <li><p>Of the two options remaining at this step, Ephelia will attend the cheaper one.</p></li>
 </ol>
 <div id="cell-17" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:03.909409Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:03.902925Z&quot;}" data-execution_count="464">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mystery_college  <span class="op">=</span> colleges_clean.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="cell-18" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T20:19:04.081747Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T20:19:04.065759Z&quot;}" data-execution_count="465">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># College is located in Region 1</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mystery_college <span class="op">=</span> mystery_college[mystery_college[<span class="st">&#39;REGION&#39;</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mystery_college.head()</span>
@@ -4012,6 +4041,7 @@ vertical-align: -.125em;
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>mystery_college <span class="op">=</span> mystery_college[mystery_college[<span class="st">&#39;INSTNM&#39;</span>] <span class="op">!=</span> <span class="st">&#39;Harvard University&#39;</span>]</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>mystery_college[[<span class="st">&quot;INSTNM&quot;</span>, <span class="st">&quot;TUITIONFEE_IN&quot;</span>]].sort_values(by<span class="op">=</span><span class="st">&quot;TUITIONFEE_IN&quot;</span>, ascending <span class="op">=</span> <span class="va">True</span>).head(n<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="465">
 <div>
 

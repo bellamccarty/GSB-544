@@ -3114,8 +3114,11 @@ vertical-align: -.125em;
 
 
 <div id="2a832f8041e8cd72" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:46.992177Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:46.987836Z&quot;}" data-execution_count="62">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="working-with-data-of-global-indicators---gapminder" class="level2">
 <h2 class="anchored" data-anchor-id="working-with-data-of-global-indicators---gapminder">Working with Data of Global Indicators - Gapminder</h2>
@@ -3138,8 +3141,11 @@ vertical-align: -.125em;
 <li><p>Import the q1data.csv dataset.</p></li>
 </ol>
 <div id="57843a6cb4296435" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:47.052126Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:47.039947Z&quot;}" data-execution_count="63">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>q1data <span class="op">=</span> pd.read_csv(<span class="st">&#39;Data/q1data.csv&#39;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q1data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="63">
 <div>
 
@@ -3230,6 +3236,8 @@ vertical-align: -.125em;
 <li>Recreate the plot as best you can using plotnine.</li>
 </ol>
 <div id="9619064655212872" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:47.432992Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:47.109243Z&quot;}" data-execution_count="64">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot with a log10 scale for the x-axis to make it similar to Gapminder Scale</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sources Used:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/59024019/add-text-to-figure-using-pythons-plotnine</span></span>
@@ -3250,6 +3258,7 @@ vertical-align: -.125em;
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    annotate(<span class="st">&quot;text&quot;</span>, x<span class="op">=</span><span class="dv">60000</span>, y<span class="op">=</span><span class="dv">45</span>, label<span class="op">=</span><span class="st">&quot;*Bubble size reflects population size&quot;</span>, </span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>             size<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">&quot;black&quot;</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, ha<span class="op">=</span><span class="st">&#39;right&#39;</span>) <span class="op">+</span> <span class="co"># Add bubble size descriptor in lieu of population toggle </span></span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">&#39;right&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3262,6 +3271,8 @@ vertical-align: -.125em;
 <li>What other geometries could you use here besides geom_point? Provide an actual plot of another geometry being used here and why it’s good or bad for visualizing these data.</li>
 </ol>
 <div id="8b4c374f199ccd93" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:47.756762Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:47.459795Z&quot;}" data-execution_count="65">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the boxplot showing life expectancy by region</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(ggplot(q1data.dropna(), aes(x<span class="op">=</span><span class="st">&#39;four_regions&#39;</span>, y<span class="op">=</span><span class="st">&#39;life_exp&#39;</span>, fill<span class="op">=</span><span class="st">&#39;four_regions&#39;</span>)) <span class="op">+</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    geom_boxplot(alpha<span class="op">=</span><span class="fl">0.7</span>, outlier_color<span class="op">=</span><span class="st">&quot;red&quot;</span>, outlier_shape <span class="op">=</span> <span class="st">&quot;3&quot;</span>) <span class="op">+</span> </span>
@@ -3271,6 +3282,7 @@ vertical-align: -.125em;
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">&#39;Region&#39;</span>, y<span class="op">=</span><span class="st">&#39;Life Expectancy (years)&#39;</span>, </span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">&quot;Global Life Expectancy by Region with Population Size&quot;</span>) <span class="op">+</span> </span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">&#39;none&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3297,6 +3309,8 @@ vertical-align: -.125em;
 <li><p>Import the q1data.csv dataset.</p></li>
 </ol>
 <div id="fc601bda1c53d50f" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:47.786326Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:47.774836Z&quot;}" data-execution_count="66">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>q2data <span class="op">=</span> pd.read_csv(<span class="st">&#39;Data/q2data.csv&#39;</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>q2data <span class="op">=</span> q2data.dropna()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3312,6 +3326,7 @@ vertical-align: -.125em;
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the updated column</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>q2data[<span class="st">&#39;energy&#39;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>1       427
 2       825
@@ -3331,6 +3346,8 @@ Name: energy, Length: 127, dtype: int64</code></pre>
 <li>Recreate the plot as best you can using plotnine.</li>
 </ol>
 <div id="c5e6e8bcf0c36831" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:48.607438Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:47.822497Z&quot;}" data-execution_count="67">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(ggplot(q2data, aes(x<span class="op">=</span><span class="st">&#39;exports&#39;</span>, y<span class="op">=</span><span class="st">&#39;imports&#39;</span>, size<span class="op">=</span><span class="st">&#39;energy&#39;</span>, fill<span class="op">=</span><span class="st">&#39;four_regions&#39;</span>)) <span class="op">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    geom_point(alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    scale_size_continuous(<span class="bu">range</span><span class="op">=</span>[<span class="dv">1</span>, <span class="dv">20</span>], guide <span class="op">=</span> <span class="va">False</span>)  <span class="op">+</span> <span class="co"># Change bubble size to look like Gapminder Plot</span></span>
@@ -3345,6 +3362,7 @@ Name: energy, Length: 127, dtype: int64</code></pre>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    annotate(<span class="st">&quot;text&quot;</span>, x<span class="op">=</span><span class="dv">220</span>, y<span class="op">=</span><span class="dv">25</span>, label<span class="op">=</span><span class="st">&quot;*Bubble size reflects Energy Use&quot;</span>, </span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>             size<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">&quot;black&quot;</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, ha<span class="op">=</span><span class="st">&#39;right&#39;</span>) <span class="op">+</span> <span class="co"># Add bubble size descriptor in lieu of energy toggle </span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">&#39;right&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3354,7 +3372,10 @@ Name: energy, Length: 127, dtype: int64</code></pre>
 </div>
 </div>
 <div id="2bbd0d1acc6a9c6" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-30T16:22:48.628798Z&quot;,&quot;start_time&quot;:&quot;2024-09-30T16:22:48.626761Z&quot;}">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 
