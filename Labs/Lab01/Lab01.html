@@ -21,10 +21,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="Lab01_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="Lab01_files/libs/clipboard/clipboard.min.js"></script>
 <script src="Lab01_files/libs/quarto-html/quarto.js"></script>
 <script src="Lab01_files/libs/quarto-html/popper.min.js"></script>
 <script src="Lab01_files/libs/quarto-html/tippy.umd.min.js"></script>
@@ -34,6 +68,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="Lab01_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Lab01_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Lab01_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -69,9 +106,177 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="testing" class="level2">
-<h2 class="anchored" data-anchor-id="testing">Testing</h2>
-<p>Here is me testing the theme</p>
+<div id="2a832f8041e8cd72" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-27T00:30:54.468119Z&quot;,&quot;start_time&quot;:&quot;2024-09-27T00:30:54.462526Z&quot;}" data-execution_count="172">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="working-with-data-of-global-indicators---gapminder" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-data-of-global-indicators---gapminder">Working with Data of Global Indicators - Gapminder</h2>
+<p>“Gapminder identifies systematic misconceptions about important global trends and proportions and uses reliable data to develop easy to understand teaching materials to rid people of their misconceptions.”</p>
+</section>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<p>Below is a plot of a visualization in Gapminder (the default/starting one actually). Look it over and take note of the variables being visualized.</p>
+<p><img src="gapminder_pic.png" width="800" height="300"></p>
+<ol type="1">
+<li><p>Identify, and list here, what aesthetics are being used and which variables are being mapped to each aesthetic.</p>
+<p>For the year 2010:</p>
+<ul>
+<li>Income is being mapped to X.</li>
+<li>Life expectancy is being mapped to Y.</li>
+<li>Population is being mapped to size.</li>
+<li>Region is being mapped to fill/color.</li>
+</ul>
+<p>It also appears they are segmenting the scatter plot into 4 income levels. It also appears they are noting income is per person (GDP/capita, PPPS inflation-adjusted).</p></li>
+<li><p>Import the q1data.csv dataset.</p></li>
+</ol>
+<div id="57843a6cb4296435" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-27T00:30:54.604772Z&quot;,&quot;start_time&quot;:&quot;2024-09-27T00:30:54.584435Z&quot;}" data-execution_count="173">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>q1data <span class="op">=</span> pd.read_csv(<span class="st">'Data/q1data.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q1data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="173">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">income</th>
+<th data-quarto-table-cell-role="th">life_exp</th>
+<th data-quarto-table-cell-role="th">population</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">four_regions</th>
+<th data-quarto-table-cell-role="th">six_regions</th>
+<th data-quarto-table-cell-role="th">eight_regions</th>
+<th data-quarto-table-cell-role="th">world_bank_region</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1910.0</td>
+<td>61.0</td>
+<td>29200000.0</td>
+<td>2010</td>
+<td>Afghanistan</td>
+<td>asia</td>
+<td>south_asia</td>
+<td>asia_west</td>
+<td>South Asia</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>11100.0</td>
+<td>78.1</td>
+<td>2950000.0</td>
+<td>2010</td>
+<td>Albania</td>
+<td>europe</td>
+<td>europe_central_asia</td>
+<td>europe_east</td>
+<td>Europe &amp; Central Asia</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>11100.0</td>
+<td>74.7</td>
+<td>36000000.0</td>
+<td>2010</td>
+<td>Algeria</td>
+<td>africa</td>
+<td>middle_east_north_africa</td>
+<td>africa_north</td>
+<td>Middle East &amp; North Africa</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>46900.0</td>
+<td>81.9</td>
+<td>84500.0</td>
+<td>2010</td>
+<td>Andorra</td>
+<td>europe</td>
+<td>europe_central_asia</td>
+<td>europe_west</td>
+<td>Europe &amp; Central Asia</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>7680.0</td>
+<td>60.8</td>
+<td>23400000.0</td>
+<td>2010</td>
+<td>Angola</td>
+<td>africa</td>
+<td>sub_saharan_africa</td>
+<td>africa_sub_saharan</td>
+<td>Sub-Saharan Africa</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Recreate the plot as best you can using plotnine.</li>
+</ol>
+<div id="9619064655212872" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-27T00:30:55.294010Z&quot;,&quot;start_time&quot;:&quot;2024-09-27T00:30:54.684716Z&quot;}" data-execution_count="174">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot with a log10 scale for the x-axis to make it similar to GapMinder Scale</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sources Used:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/59024019/add-text-to-figure-using-pythons-plotnine</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://plotnine.org/reference/scale_x_log10.html</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># https://plotnine.org/reference/guide.html</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># https://f0nzie.github.io/rmarkdown-python-plotnine/scales-and-zooming.html</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># https://plotnine.org/reference/scale_size_continuous.html</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>(ggplot(q1data.dropna(), aes(x<span class="op">=</span><span class="st">'income'</span>, y<span class="op">=</span><span class="st">'life_exp'</span>, size<span class="op">=</span><span class="st">'population'</span>, fill<span class="op">=</span><span class="st">'four_regions'</span>)) <span class="op">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    geom_point(alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    scale_size_continuous(<span class="bu">range</span><span class="op">=</span>[<span class="dv">1</span>, <span class="dv">20</span>], guide <span class="op">=</span> <span class="va">False</span>) <span class="op">+</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    theme_linedraw() <span class="op">+</span> </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">'Income (GDP per capita, PPP)'</span>, y<span class="op">=</span><span class="st">'Life Expectancy (years)'</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>         fill<span class="op">=</span><span class="st">'Region'</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>         title <span class="op">=</span> <span class="st">"Global Life Expectancy vs Income: A Population Perspective"</span>) <span class="op">+</span>  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    scale_x_log10(breaks<span class="op">=</span>[<span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">4000</span>, <span class="dv">8000</span>, <span class="dv">16000</span>, <span class="dv">32000</span>, <span class="dv">64000</span>]) <span class="op">+</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    annotate(<span class="st">"text"</span>, x<span class="op">=</span><span class="dv">10000</span>, y<span class="op">=</span><span class="dv">65</span>, label<span class="op">=</span><span class="st">"2010"</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>             size<span class="op">=</span><span class="dv">80</span>, color<span class="op">=</span><span class="st">"grey"</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, ha<span class="op">=</span><span class="st">'center'</span>) <span class="op">+</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    annotate(<span class="st">"text"</span>, x<span class="op">=</span><span class="dv">60000</span>, y<span class="op">=</span><span class="dv">45</span>, label<span class="op">=</span><span class="st">"*Bubble size reflects population size"</span>, </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>             size<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, ha<span class="op">=</span><span class="st">'right'</span>) <span class="op">+</span> </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">'right'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab01_files/figure-html/cell-4-output-1.png" width="640" height="480" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>What other geometries could you use here besides geom_point? Provide an actual plot of another geometry being used here and why it’s good or bad for visualizing these data.</li>
+</ol>
+<div id="8b4c374f199ccd93" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-27T00:30:55.949390Z&quot;,&quot;start_time&quot;:&quot;2024-09-27T00:30:55.351498Z&quot;}" data-execution_count="175">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the boxplot showing life expectancy by region</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ggplot(q1data.dropna(), aes(x<span class="op">=</span><span class="st">'four_regions'</span>, y<span class="op">=</span><span class="st">'life_exp'</span>, fill<span class="op">=</span><span class="st">'four_regions'</span>)) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    geom_boxplot(alpha<span class="op">=</span><span class="fl">0.7</span>, outlier_color<span class="op">=</span><span class="st">"red"</span>, outlier_shape <span class="op">=</span> <span class="st">"2"</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    geom_jitter(aes(size<span class="op">=</span><span class="st">'population'</span>), color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    scale_size_continuous(<span class="bu">range</span><span class="op">=</span>[<span class="dv">1</span>, <span class="dv">20</span>], guide<span class="op">=</span><span class="va">False</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    theme_linedraw() <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    labs(x<span class="op">=</span><span class="st">'Region'</span>, y<span class="op">=</span><span class="st">'Life Expectancy (years)'</span>, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>         title<span class="op">=</span><span class="st">"Global Life Expectancy by Region with Population Size"</span>) <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">'none'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab01_files/figure-html/cell-5-output-1.png" width="640" height="480" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This approach is beneficial for visualizing the data because it combines two types of insights: the boxplot shows the distribution of life expectancy within each region (medians, quartiles, and outliers) while the overlaid points represent individual countries, with the size of the points indicating population. If this visualization only had the boxplots, we would lose the ability to see the relationship between size and the remainder of the variables. This allows for viewing both the overall trends (via the boxplot) and how population size plays a role within those trends. However, it could be problematic if there is a lot of overlap or clustering, making it hard to distinguish between the different points. Additionally, the larger bubbles may obscure important details of the boxplot, especially in regions with many data points, reducing clarity.</p>
+<div id="1f28b7ecc820c87e" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-09-27T00:30:56.046898Z&quot;,&quot;start_time&quot;:&quot;2024-09-27T00:30:56.043933Z&quot;}">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 </main>
