@@ -3464,23 +3464,18 @@ vertical-align: -.125em;
 <div id="2bbd0d1acc6a9c6" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-02T04:21:57.129068Z&quot;,&quot;start_time&quot;:&quot;2024-10-02T04:21:56.877643Z&quot;}" data-execution_count="214">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> facet_wrap</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>line_plot_facet <span class="op">=</span> (</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    ggplot(q2data, aes(x<span class="op">=</span><span class="st">&#39;exports&#39;</span>, y<span class="op">=</span><span class="st">&#39;imports&#39;</span>, color<span class="op">=</span><span class="st">&#39;energy&#39;</span>, group<span class="op">=</span><span class="st">&#39;four_regions&#39;</span>)) <span class="op">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    geom_line(size<span class="op">=</span><span class="fl">1.5</span>) <span class="op">+</span>  <span class="co"># Line plot with lines grouped by region</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    scale_color_gradient(low<span class="op">=</span><span class="st">&quot;lightblue&quot;</span>, high<span class="op">=</span><span class="st">&quot;darkblue&quot;</span>, name<span class="op">=</span><span class="st">&quot;Energy Use&quot;</span>) <span class="op">+</span>  <span class="co"># Color gradient for energy use</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    labs(</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">&quot;Line Plot of Exports vs. Imports with Energy Use&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">&quot;Exports (</span><span class="sc">% o</span><span class="st">f GDP)&quot;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">&quot;Imports (</span><span class="sc">% o</span><span class="st">f GDP)&quot;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">&#39;~four_regions&#39;</span>) <span class="op">+</span>  <span class="co"># Facet by region to get individual plots for each region</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    theme_linedraw() <span class="op">+</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">&#39;right&#39;</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(line_plot_facet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(ggplot(q2data, aes(x<span class="op">=</span><span class="st">&#39;exports&#39;</span>, y<span class="op">=</span><span class="st">&#39;imports&#39;</span>, color<span class="op">=</span><span class="st">&#39;energy&#39;</span>, group<span class="op">=</span><span class="st">&#39;four_regions&#39;</span>)) <span class="op">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    geom_line(size<span class="op">=</span><span class="fl">1.5</span>) <span class="op">+</span>  <span class="co"># Line plot with lines grouped by region</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    scale_color_gradient(low<span class="op">=</span><span class="st">&quot;lightblue&quot;</span>, high<span class="op">=</span><span class="st">&quot;darkblue&quot;</span>, name<span class="op">=</span><span class="st">&quot;Energy Use&quot;</span>) <span class="op">+</span>  <span class="co"># Color gradient for energy use</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    labs(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">&quot;Line Plot of Exports vs. Imports with Energy Use&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">&quot;Exports (</span><span class="sc">% o</span><span class="st">f GDP)&quot;</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">&quot;Imports (</span><span class="sc">% o</span><span class="st">f GDP)&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">&#39;~four_regions&#39;</span>) <span class="op">+</span>  <span class="co"># Facet by region to get individual plots for each region</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    theme_linedraw() <span class="op">+</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    theme(legend_position<span class="op">=</span><span class="st">&#39;right&#39;</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
