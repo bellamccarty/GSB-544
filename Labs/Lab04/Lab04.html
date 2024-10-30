@@ -3117,7 +3117,7 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="coffee-lovers-unite">Coffee Lovers Unite!</h2>
 <p>If caffeine is one of the most popular drugs, then coffee is likely one of the most popular delivery systems for it. Aside from caffeine, people enjoy the wonderful variety of coffee-related drinks. Let’s do a rough investigation of the “market share” by two of the top coffee chains in the United States!</p>
 <p>World Population Review provides some great data on store locations and chain prevalence. Check out this page (https://worldpopulationreview.com/state-rankings/starbucks-stores-by-state) for the Starbucks Coffee locations in the United States. Notice that this page only really gives the name of the state and the number of locations in that state.</p>
-<div id="fe4c858ed408c0f0" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.001097Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:48.998714Z&quot;}" data-execution_count="61">
+<div id="fe4c858ed408c0f0" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:14.525777Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:14.522313Z&quot;}" data-execution_count="81">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package Dependecies</span></span>
@@ -3143,7 +3143,7 @@ vertical-align: -.125em;
 <ol start="2" type="1">
 <li>Parse, merge and tidy your data. Think carefully about what the tidy version of this dataset is with multiple years represented on the website.</li>
 </ol>
-<div id="3419a76bbaf4bae7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.123565Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:49.026652Z&quot;}" data-execution_count="62">
+<div id="3419a76bbaf4bae7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:15.630939Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:15.495413Z&quot;}" data-execution_count="82">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL for Starbucks data</span></span>
@@ -3181,7 +3181,7 @@ vertical-align: -.125em;
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>starbucks_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="82">
 <div>
 
 
@@ -3237,7 +3237,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="d8d6d43657a274d" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.261173Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:49.147159Z&quot;}" data-execution_count="63">
+<div id="d8d6d43657a274d" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:15.755088Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:15.651821Z&quot;}" data-execution_count="83">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL for Dunkin&#39; Donuts data</span></span>
@@ -3269,7 +3269,7 @@ vertical-align: -.125em;
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>dunkin_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display" data-execution_count="83">
 <div>
 
 
@@ -3319,7 +3319,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="1e76605a6bc67374" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.501464Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:49.492161Z&quot;}" data-execution_count="64">
+<div id="1e76605a6bc67374" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:15.799971Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:15.791895Z&quot;}" data-execution_count="84">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt Starbucks data with a Store label</span></span>
@@ -3337,7 +3337,7 @@ vertical-align: -.125em;
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>coffee_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="84">
 <div>
 
 
@@ -3402,7 +3402,7 @@ vertical-align: -.125em;
 </ol>
 <section id="part-4" class="level3">
 <h3 class="anchored" data-anchor-id="part-4">Part 4:</h3>
-<div id="cfe8f06e8d0b3b3d" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.744982Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:49.611799Z&quot;}" data-execution_count="65">
+<div id="cfe8f06e8d0b3b3d" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:16.072349Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:15.874700Z&quot;}" data-execution_count="85">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL for the Wikipedia page</span></span>
@@ -3428,7 +3428,7 @@ vertical-align: -.125em;
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>population_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell-output cell-output-display" data-execution_count="85">
 <div>
 
 
@@ -3472,7 +3472,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="1c78c5241fdc0c51" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.804641Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:49.797319Z&quot;}" data-execution_count="66">
+<div id="1c78c5241fdc0c51" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:16.143038Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:16.136304Z&quot;}" data-execution_count="86">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge coffee data with population data on the &#39;State&#39; column</span></span>
@@ -3480,7 +3480,7 @@ vertical-align: -.125em;
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>merged_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="86">
 <div>
 
 
@@ -3553,14 +3553,14 @@ vertical-align: -.125em;
 <li>https://companiesmarketcap.com/starbucks/revenue/</li>
 <li>https://companiesmarketcap.com/dunkin-brands/revenue/</li>
 </ul>
-<div id="afa4edcefc2cfb52" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:49.900858Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:49.898080Z&quot;}" data-execution_count="67">
+<div id="afa4edcefc2cfb52" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:16.235201Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:16.232186Z&quot;}" data-execution_count="87">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>url_sbux <span class="op">=</span> <span class="st">&quot;https://companiesmarketcap.com/starbucks/revenue/&quot;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>url_dunkin <span class="op">=</span> <span class="st">&quot;https://companiesmarketcap.com/dunkin-brands/revenue/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="358d6b74d8cc3a65" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:50.403501Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:50.001985Z&quot;}" data-execution_count="68">
+<div id="358d6b74d8cc3a65" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:16.790313Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:16.344256Z&quot;}" data-execution_count="88">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Starbucks revenue extraction</span></span>
@@ -3587,7 +3587,7 @@ vertical-align: -.125em;
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>df_sbux[<span class="st">&quot;Store&quot;</span>] <span class="op">=</span> <span class="st">&quot;Starbucks&quot;</span></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>df_sbux.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="88">
 <div>
 
 
@@ -3637,7 +3637,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="c209e025f8221a24" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:50.818896Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:50.421718Z&quot;}" data-execution_count="69">
+<div id="c209e025f8221a24" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:17.211744Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:16.809889Z&quot;}" data-execution_count="89">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dunkin&#39; revenue extraction</span></span>
@@ -3680,7 +3680,7 @@ vertical-align: -.125em;
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>df_dunkin[<span class="st">&quot;Year&quot;</span>] <span class="op">=</span> df_dunkin[<span class="st">&quot;Year&quot;</span>].astype(<span class="bu">int</span>)</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>df_dunkin.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell-output cell-output-display" data-execution_count="89">
 <div>
 
 
@@ -3730,14 +3730,14 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="9cf66ddd4daf4ccd" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:50.857749Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:50.852171Z&quot;}" data-execution_count="70">
+<div id="9cf66ddd4daf4ccd" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:17.258170Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:17.252565Z&quot;}" data-execution_count="90">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenate Starbucks and Dunkin&#39; revenue DataFrames</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_revenue <span class="op">=</span> pd.concat([df_sbux, df_dunkin], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_revenue.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="70">
+<div class="cell-output cell-output-display" data-execution_count="90">
 <div>
 
 
@@ -3787,14 +3787,14 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="6eaf037a56f7a17b" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:50.927884Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:50.921637Z&quot;}" data-execution_count="71">
+<div id="6eaf037a56f7a17b" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:17.349053Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:17.341223Z&quot;}" data-execution_count="91">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>final_merged_df <span class="op">=</span> merged_df.merge(df_revenue, on<span class="op">=</span>[<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Store&quot;</span>], how<span class="op">=</span><span class="st">&quot;left&quot;</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>final_merged_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display" data-execution_count="91">
 <div>
 
 
@@ -3865,7 +3865,7 @@ vertical-align: -.125em;
 </section>
 <section id="part-6" class="level3">
 <h3 class="anchored" data-anchor-id="part-6">Part 6:</h3>
-<div id="c00e04c50df3d128" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:51.049105Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:51.041424Z&quot;}" data-execution_count="72">
+<div id="c00e04c50df3d128" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:17.490646Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:17.482759Z&quot;}" data-execution_count="92">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># State-region mapping dict based on the Wikipedia regions</span></span>
@@ -3898,7 +3898,7 @@ vertical-align: -.125em;
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>final_merged_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="92">
 <div>
 
 
@@ -3986,7 +3986,7 @@ vertical-align: -.125em;
 <li><p>Does the distribution of each chain’s stores match population distribution, by both state/region?</p></li>
 <li><p>Do the financial data match what you’d expect based on the number and locations of the stores? Why or why not?</p></li>
 </ul>
-<div id="edd40a9e29931cdf" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:51.346496Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:51.190832Z&quot;}" data-execution_count="73">
+<div id="edd40a9e29931cdf" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:17.775916Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:17.608476Z&quot;}" data-execution_count="93">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chain Prevalence by Region</span></span>
@@ -4030,7 +4030,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="35f4c177bc8eb394" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:51.555792Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:51.419557Z&quot;}" data-execution_count="74">
+<div id="35f4c177bc8eb394" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:17.965843Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:17.834796Z&quot;}" data-execution_count="94">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>store_density_population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4043,7 +4043,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="2093155bc76f19a2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:52.118707Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:51.568310Z&quot;}" data-execution_count="75">
+<div id="2093155bc76f19a2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:18.715292Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:17.979852Z&quot;}" data-execution_count="95">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>store_count_region</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4059,8 +4059,8 @@ vertical-align: -.125em;
 <p>The bar chart showing the total number of stores by region illustrates the stronger overall presence of Starbucks across all regions, especially in the South and West. Starbucks has a significant lead over Dunkin’ in these regions, which could be attributed to the brand’s focus on a broader geographic reach and appeal to diverse demographic segments. For instance, Starbucks has a prominent presence in highly populated states like California and Texas within the West and South, respectively. Dunkin’ Donuts, in contrast, has a particularly strong concentration in the Northeast. Here, states like New York and Massachusetts show a dense network of Dunkin’ stores, reflecting the brand’s origin and its stronger cultural alignment with this region.</p>
 <p>The scatter plot comparing store density relative to state populations provides a closer look at how store availability correlates with population size. Dunkin’ Donuts appears to have higher store density in smaller, more densely populated states, particularly in the Northeast, where the brand has established itself as a staple. For example, states like Massachusetts and New York show high numbers of Dunkin’ locations relative to their populations, indicating a high demand concentration. Conversely, Starbucks shows a more balanced distribution across both low- and high-density areas, with a notable presence in large states with varying population sizes, such as California and Washington.</p>
 <p>The faceted chart depicting store counts by state within each region further reinforces these regional patterns. In the Northeast, Dunkin’ Donuts dominates states like Massachusetts and New York, outnumbering Starbucks significantly. This contrasts with the West, where Starbucks has a significant lead, especially in California, indicating a more widespread acceptance and brand penetration in this region. This chart also highlights Dunkin’s relatively minimal presence in the Western states, reflecting the company’s more localized strategy centered around the Eastern U.S. In the South, both chains show a moderate presence, although Starbucks remains the more dominant brand overall in states like Florida.</p>
-<p>These findings suggest that while Starbucks has achieved a more uniform national presence, Dunkin’s strategy has been highly concentrated in the Northeast. Starbucks’ broader store distribution aligns with its appeal to various urban and suburban markets across the country. In contrast, Dunkin’s higher store density in smaller, more densely populated states in the Northeast indicates a strong regional loyalty, likely fostered by the brand’s origins and historical focus on this area. This difference in distribution strategy highlights each chain’s approach to balancing presence with regional customer demand and demographic preferences.</p>
-<div id="c0c6a22603847a08" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:53.008594Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:52.998300Z&quot;}" data-execution_count="76">
+<p>These findings suggest that while Starbucks has achieved a more uniform national presence, Dunkin’s strategy has been highly concentrated in the Northeast. Starbucks’ broader store distribution aligns with its appeal to various urban and suburban markets across the country. In contrast, Dunkin’s higher store density in smaller, more densely populated states in the Northeast indicates a strong regional loyalty, likely fostered by the brand’s origins and historical focus on this area.</p>
+<div id="c0c6a22603847a08" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:20.163590Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:20.153595Z&quot;}" data-execution_count="96">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the total number of stores per chain per year</span></span>
@@ -4077,7 +4077,7 @@ vertical-align: -.125em;
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>store_revenues[[<span class="st">&#39;Year&#39;</span>, <span class="st">&#39;Store&#39;</span>, <span class="st">&#39;Store_Count&#39;</span>, <span class="st">&#39;Revenue ($Billion)&#39;</span>, <span class="st">&#39;Revenue_per_Store&#39;</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="76">
+<div class="cell-output cell-output-display" data-execution_count="96">
 <div>
 
 
@@ -4139,7 +4139,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="c0851a47519cf598" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:53.866661Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:53.724984Z&quot;}" data-execution_count="77">
+<div id="c0851a47519cf598" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:20.317410Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:20.181612Z&quot;}" data-execution_count="97">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot for Revenue per Store by Year and Store</span></span>
@@ -4172,7 +4172,7 @@ vertical-align: -.125em;
 <li><p>Extract the name of the company from either the URL specified or the webpage (assume the URL will have the same format as the ones used above)</p></li>
 <li><p>Return a clean, organized and tidy dataset. Find a page other than Starbucks and Dunkin’ Donuts to test this on to confirm that it works. It’s fine if this is not related to coffee.</p></li>
 </ul>
-<div id="2772edb9d1d2ef45" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:53.890256Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:53.886257Z&quot;}" data-execution_count="78">
+<div id="2772edb9d1d2ef45" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:20.340564Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:20.336583Z&quot;}" data-execution_count="98">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scrape_store_data(url):</span>
@@ -4203,7 +4203,7 @@ vertical-align: -.125em;
 <span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        state_name <span class="op">=</span> row.find(<span class="st">&quot;th&quot;</span>).get_text(strip<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        columns <span class="op">=</span> row.find_all(<span class="st">&quot;td&quot;</span>)</span>
 <span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Collect store counts for the dynamically identified years</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Collect store counts for the identified years</span></span>
 <span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>        row_data <span class="op">=</span> [state_name]  <span class="co"># Start with the state name</span></span>
 <span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(years)):</span>
 <span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add store data if column exists, otherwise append None</span></span>
@@ -4212,7 +4212,7 @@ vertical-align: -.125em;
 <span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>        rows.append(row_data)</span>
 <span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define column names: &quot;State&quot; + dynamically identified years</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define column names: &quot;State&quot; +  years</span></span>
 <span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    column_names <span class="op">=</span> [<span class="st">&quot;State&quot;</span>] <span class="op">+</span> years</span>
 <span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert to DataFrame</span></span>
@@ -4237,19 +4237,19 @@ vertical-align: -.125em;
 <section id="does-it-work-for-chick-fil-a" class="level4">
 <h4 class="anchored" data-anchor-id="does-it-work-for-chick-fil-a">Does it work for Chick-Fil-A?</h4>
 <p>https://worldpopulationreview.com/state-rankings/chick-fil-a-by-state</p>
-<div id="3fcbdb2bd58a9de7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:53.926546Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:53.924195Z&quot;}" data-execution_count="79">
+<div id="3fcbdb2bd58a9de7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:20.369106Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:20.367108Z&quot;}" data-execution_count="99">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://worldpopulationreview.com/state-rankings/chick-fil-a-by-state&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="3e588a29100ac8f7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T05:37:55.243622Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T05:37:54.896118Z&quot;}" data-execution_count="80">
+<div id="3e588a29100ac8f7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-10-30T06:45:21.474803Z&quot;,&quot;start_time&quot;:&quot;2024-10-30T06:45:21.359984Z&quot;}" data-execution_count="100">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>scraped_data <span class="op">=</span> scrape_store_data(url)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>scraped_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="80">
+<div class="cell-output cell-output-display" data-execution_count="100">
 <div>
 
 
