@@ -3118,7 +3118,7 @@ vertical-align: -.125em;
 <p>Import the Palmer Penguins dataset and print out the first few rows.</p>
 <p>Suppose we want to predict <code>bill_depth_mm</code> using the other variables in the dataset.</p>
 <p>Which variables would we need to <strong>dummify</strong>?</p>
-<div id="cell-2" class="cell" data-outputid="6ba46cee-31bf-45cb-8d42-cbbd14a1fafd" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:01:33.963269Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:01:33.954476Z&quot;}" data-execution_count="19">
+<div id="cell-2" class="cell" data-outputid="6ba46cee-31bf-45cb-8d42-cbbd14a1fafd" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:51:03.170432Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:51:03.162570Z&quot;}" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
@@ -3129,7 +3129,7 @@ vertical-align: -.125em;
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> load_penguins()</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
 
@@ -3213,7 +3213,7 @@ vertical-align: -.125em;
 <pre><code>    - species
     - island
     - sex</code></pre>
-<div id="cell-4" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:01:34.004402Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:01:33.992877Z&quot;}" data-execution_count="20">
+<div id="cell-4" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:51:03.200048Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:51:03.189153Z&quot;}" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy variables for categorical columns</span></span>
@@ -3222,7 +3222,7 @@ vertical-align: -.125em;
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the transformed dataset</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_dummified.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 
@@ -3340,7 +3340,7 @@ vertical-align: -.125em;
 <li>Degree 10 polynomial model</li>
 </ul>
 <p>Make predictions for each model and plot your fitted models on the scatterplot.</p>
-<div id="cell-6" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:01:34.076848Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:01:34.062788Z&quot;}" data-execution_count="21">
+<div id="cell-6" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:51:03.356222Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:51:03.346360Z&quot;}" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_polynomial_features(df, column, max_degree):</span>
@@ -3352,7 +3352,7 @@ vertical-align: -.125em;
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows to check the added polynomial columns</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -3486,7 +3486,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="cell-7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:01:34.359077Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:01:34.144798Z&quot;}" data-execution_count="22">
+<div id="cell-7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-02T05:51:03.599590Z&quot;,&quot;start_time&quot;:&quot;2024-11-02T05:51:03.397356Z&quot;}" data-execution_count="26">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop rows with NaN values in bill_length_mm or bill_depth_mm</span></span>
