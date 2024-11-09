@@ -3118,14 +3118,14 @@ vertical-align: -.125em;
 <section id="complete-the-tasks-below." class="level2">
 <h2 class="anchored" data-anchor-id="complete-the-tasks-below.">Complete the tasks below.</h2>
 <hr>
-<div id="971de3903c9ad3c7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.191292Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.188246Z&quot;}" data-execution_count="58">
+<div id="971de3903c9ad3c7" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.240956Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.237675Z&quot;}" data-execution_count="90">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Package Dependencies</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score, mean_squared_error</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder, PolynomialFeatures</span>
@@ -3138,14 +3138,14 @@ vertical-align: -.125em;
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="22203b5885699a0a" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.235682Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.212969Z&quot;}" data-execution_count="59">
+<div id="22203b5885699a0a" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.282351Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.259996Z&quot;}" data-execution_count="91">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the Data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_ames <span class="op">=</span> pd.read_csv(<span class="st">&quot;Data/AmesHousing.csv&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_ames.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="91">
 <div>
 
 
@@ -3304,7 +3304,7 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<div id="a9ccb7707dbff211" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.320470Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.312236Z&quot;}" data-execution_count="60">
+<div id="a9ccb7707dbff211" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.365666Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.358642Z&quot;}" data-execution_count="92">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_ames.drop(<span class="st">&quot;SalePrice&quot;</span>, axis <span class="op">=</span> <span class="dv">1</span>)</span>
@@ -3328,7 +3328,7 @@ vertical-align: -.125em;
 <p>Set up a pipeline for each of these four models.</p>
 <p>Then, get predictions on the test set for each of your pipelines, and compute the root mean squared error. Which model performed best?</p>
 <p><em>Note: You should only use the function train_test_split() one time in your code; that is, we should be predicting on the same test set for all three models.</em></p>
-<div id="3a5496201eec56a2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.364488Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.357867Z&quot;}" data-execution_count="61">
+<div id="3a5496201eec56a2" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.412311Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.405566Z&quot;}" data-execution_count="93">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1</span></span>
@@ -3346,8 +3346,8 @@ vertical-align: -.125em;
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>model1_pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="61">
-<style>#sk-container-id-17 {
+<div class="cell-output cell-output-display" data-execution_count="93">
+<style>#sk-container-id-25 {
 
 --sklearn-color-text: black;
 --sklearn-color-line: gray;
@@ -3374,13 +3374,13 @@ vertical-align: -.125em;
 --sklearn-color-icon: #878787;
 }
 }
-#sk-container-id-17 {
+#sk-container-id-25 {
 color: var(--sklearn-color-text);
 }
-#sk-container-id-17 pre {
+#sk-container-id-25 pre {
 padding: 0;
 }
-#sk-container-id-17 input.sk-hidden--visually {
+#sk-container-id-25 input.sk-hidden--visually {
 border: 0;
 clip: rect(1px 1px 1px 1px);
 clip: rect(1px, 1px, 1px, 1px);
@@ -3391,19 +3391,19 @@ padding: 0;
 position: absolute;
 width: 1px;
 }
-#sk-container-id-17 div.sk-dashed-wrapped {
+#sk-container-id-25 div.sk-dashed-wrapped {
 border: 1px dashed var(--sklearn-color-line);
 margin: 0 0.4em 0.5em 0.4em;
 box-sizing: border-box;
 padding-bottom: 0.4em;
 background-color: var(--sklearn-color-background);
 }
-#sk-container-id-17 div.sk-container {
+#sk-container-id-25 div.sk-container {
 
 display: inline-block !important;
 position: relative;
 }
-#sk-container-id-17 div.sk-text-repr-fallback {
+#sk-container-id-25 div.sk-text-repr-fallback {
 display: none;
 }
 div.sk-parallel-item,
@@ -3416,36 +3416,36 @@ background-repeat: no-repeat;
 background-position: center center;
 }
 
-#sk-container-id-17 div.sk-parallel-item::after {
+#sk-container-id-25 div.sk-parallel-item::after {
 content: "";
 width: 100%;
 border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
 flex-grow: 1;
 }
-#sk-container-id-17 div.sk-parallel {
+#sk-container-id-25 div.sk-parallel {
 display: flex;
 align-items: stretch;
 justify-content: center;
 background-color: var(--sklearn-color-background);
 position: relative;
 }
-#sk-container-id-17 div.sk-parallel-item {
+#sk-container-id-25 div.sk-parallel-item {
 display: flex;
 flex-direction: column;
 }
-#sk-container-id-17 div.sk-parallel-item:first-child::after {
+#sk-container-id-25 div.sk-parallel-item:first-child::after {
 align-self: flex-end;
 width: 50%;
 }
-#sk-container-id-17 div.sk-parallel-item:last-child::after {
+#sk-container-id-25 div.sk-parallel-item:last-child::after {
 align-self: flex-start;
 width: 50%;
 }
-#sk-container-id-17 div.sk-parallel-item:only-child::after {
+#sk-container-id-25 div.sk-parallel-item:only-child::after {
 width: 0;
 }
 
-#sk-container-id-17 div.sk-serial {
+#sk-container-id-25 div.sk-serial {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -3455,12 +3455,12 @@ padding-left: 1em;
 }
 
 
-#sk-container-id-17 div.sk-toggleable {
+#sk-container-id-25 div.sk-toggleable {
 
 background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-17 label.sk-toggleable__label {
+#sk-container-id-25 label.sk-toggleable__label {
 cursor: pointer;
 display: block;
 width: 100%;
@@ -3469,18 +3469,18 @@ padding: 0.5em;
 box-sizing: border-box;
 text-align: center;
 }
-#sk-container-id-17 label.sk-toggleable__label-arrow:before {
+#sk-container-id-25 label.sk-toggleable__label-arrow:before {
 
 content: "▸";
 float: left;
 margin-right: 0.25em;
 color: var(--sklearn-color-icon);
 }
-#sk-container-id-17 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-25 label.sk-toggleable__label-arrow:hover:before {
 color: var(--sklearn-color-text);
 }
 
-#sk-container-id-17 div.sk-toggleable__content {
+#sk-container-id-25 div.sk-toggleable__content {
 max-height: 0;
 max-width: 0;
 overflow: hidden;
@@ -3488,75 +3488,75 @@ text-align: left;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-17 div.sk-toggleable__content.fitted {
+#sk-container-id-25 div.sk-toggleable__content.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-17 div.sk-toggleable__content pre {
+#sk-container-id-25 div.sk-toggleable__content pre {
 margin: 0.2em;
 border-radius: 0.25em;
 color: var(--sklearn-color-text);
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-17 div.sk-toggleable__content.fitted pre {
+#sk-container-id-25 div.sk-toggleable__content.fitted pre {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-17 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-25 input.sk-toggleable__control:checked~div.sk-toggleable__content {
 
 max-height: 200px;
 max-width: 100%;
 overflow: auto;
 }
-#sk-container-id-17 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-25 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
 content: "▾";
 }
 
-#sk-container-id-17 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-25 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-17 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-25 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
 
-#sk-container-id-17 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-25 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-17 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-25 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
-#sk-container-id-17 div.sk-label label.sk-toggleable__label,
-#sk-container-id-17 div.sk-label label {
+#sk-container-id-25 div.sk-label label.sk-toggleable__label,
+#sk-container-id-25 div.sk-label label {
 
 color: var(--sklearn-color-text-on-default-background);
 }
 
-#sk-container-id-17 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-25 div.sk-label:hover label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-17 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-25 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-17 div.sk-label label {
+#sk-container-id-25 div.sk-label label {
 font-family: monospace;
 font-weight: bold;
 display: inline-block;
 line-height: 1.2em;
 }
-#sk-container-id-17 div.sk-label-container {
+#sk-container-id-25 div.sk-label-container {
 text-align: center;
 }
 
-#sk-container-id-17 div.sk-estimator {
+#sk-container-id-25 div.sk-estimator {
 font-family: monospace;
 border: 1px dotted var(--sklearn-color-border-box);
 border-radius: 0.25em;
@@ -3565,16 +3565,16 @@ margin-bottom: 0.5em;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-17 div.sk-estimator.fitted {
+#sk-container-id-25 div.sk-estimator.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-17 div.sk-estimator:hover {
+#sk-container-id-25 div.sk-estimator:hover {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-17 div.sk-estimator.fitted:hover {
+#sk-container-id-25 div.sk-estimator.fitted:hover {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -3651,7 +3651,7 @@ display: block;
 }
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-17 a.estimator_doc_link {
+#sk-container-id-25 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -3666,39 +3666,39 @@ display: block;
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-17 a.estimator_doc_link.fitted {
+#sk-container-id-25 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-17 a.estimator_doc_link:hover {
+#sk-container-id-25 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-17 a.estimator_doc_link.fitted:hover {
+#sk-container-id-25 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-17" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+</style><div id="sk-container-id-25" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(transformers=[(&#39;standardize&#39;,
                                                   StandardScaler(),
                                                   [&#39;Gr Liv Area&#39;,
                                                    &#39;TotRms AbvGrd&#39;])])),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-120" type="checkbox"><label for="sk-estimator-id-120" class="sk-toggleable__label  sk-toggleable__label-arrow ">  Pipeline<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+                (&#39;linear_regression&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-182" type="checkbox"><label for="sk-estimator-id-182" class="sk-toggleable__label  sk-toggleable__label-arrow ">  Pipeline<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(transformers=[(&#39;standardize&#39;,
                                                   StandardScaler(),
                                                   [&#39;Gr Liv Area&#39;,
                                                    &#39;TotRms AbvGrd&#39;])])),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-121" type="checkbox"><label for="sk-estimator-id-121" class="sk-toggleable__label  sk-toggleable__label-arrow "> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[(&#39;standardize&#39;, StandardScaler(),
-                                 [&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-122" type="checkbox"><label for="sk-estimator-id-122" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardize</label><div class="sk-toggleable__content "><pre>[&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-123" type="checkbox"><label for="sk-estimator-id-123" class="sk-toggleable__label  sk-toggleable__label-arrow "> StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-124" type="checkbox"><label for="sk-estimator-id-124" class="sk-toggleable__label  sk-toggleable__label-arrow "> LinearRegression<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content "><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
+                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-183" type="checkbox"><label for="sk-estimator-id-183" class="sk-toggleable__label  sk-toggleable__label-arrow "> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[(&#39;standardize&#39;, StandardScaler(),
+                                 [&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-184" type="checkbox"><label for="sk-estimator-id-184" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardize</label><div class="sk-toggleable__content "><pre>[&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-185" type="checkbox"><label for="sk-estimator-id-185" class="sk-toggleable__label  sk-toggleable__label-arrow "> StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-186" type="checkbox"><label for="sk-estimator-id-186" class="sk-toggleable__label  sk-toggleable__label-arrow "> LinearRegression<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content "><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
 </div>
 </div>
-<div id="ef5779f6d82898ce" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.564973Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.555570Z&quot;}" data-execution_count="62">
+<div id="ef5779f6d82898ce" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.546221Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.537572Z&quot;}" data-execution_count="94">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2</span></span>
@@ -3717,8 +3717,8 @@ display: block;
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>model2_pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="62">
-<style>#sk-container-id-18 {
+<div class="cell-output cell-output-display" data-execution_count="94">
+<style>#sk-container-id-26 {
 
 --sklearn-color-text: black;
 --sklearn-color-line: gray;
@@ -3745,13 +3745,13 @@ display: block;
 --sklearn-color-icon: #878787;
 }
 }
-#sk-container-id-18 {
+#sk-container-id-26 {
 color: var(--sklearn-color-text);
 }
-#sk-container-id-18 pre {
+#sk-container-id-26 pre {
 padding: 0;
 }
-#sk-container-id-18 input.sk-hidden--visually {
+#sk-container-id-26 input.sk-hidden--visually {
 border: 0;
 clip: rect(1px 1px 1px 1px);
 clip: rect(1px, 1px, 1px, 1px);
@@ -3762,19 +3762,19 @@ padding: 0;
 position: absolute;
 width: 1px;
 }
-#sk-container-id-18 div.sk-dashed-wrapped {
+#sk-container-id-26 div.sk-dashed-wrapped {
 border: 1px dashed var(--sklearn-color-line);
 margin: 0 0.4em 0.5em 0.4em;
 box-sizing: border-box;
 padding-bottom: 0.4em;
 background-color: var(--sklearn-color-background);
 }
-#sk-container-id-18 div.sk-container {
+#sk-container-id-26 div.sk-container {
 
 display: inline-block !important;
 position: relative;
 }
-#sk-container-id-18 div.sk-text-repr-fallback {
+#sk-container-id-26 div.sk-text-repr-fallback {
 display: none;
 }
 div.sk-parallel-item,
@@ -3787,36 +3787,36 @@ background-repeat: no-repeat;
 background-position: center center;
 }
 
-#sk-container-id-18 div.sk-parallel-item::after {
+#sk-container-id-26 div.sk-parallel-item::after {
 content: "";
 width: 100%;
 border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
 flex-grow: 1;
 }
-#sk-container-id-18 div.sk-parallel {
+#sk-container-id-26 div.sk-parallel {
 display: flex;
 align-items: stretch;
 justify-content: center;
 background-color: var(--sklearn-color-background);
 position: relative;
 }
-#sk-container-id-18 div.sk-parallel-item {
+#sk-container-id-26 div.sk-parallel-item {
 display: flex;
 flex-direction: column;
 }
-#sk-container-id-18 div.sk-parallel-item:first-child::after {
+#sk-container-id-26 div.sk-parallel-item:first-child::after {
 align-self: flex-end;
 width: 50%;
 }
-#sk-container-id-18 div.sk-parallel-item:last-child::after {
+#sk-container-id-26 div.sk-parallel-item:last-child::after {
 align-self: flex-start;
 width: 50%;
 }
-#sk-container-id-18 div.sk-parallel-item:only-child::after {
+#sk-container-id-26 div.sk-parallel-item:only-child::after {
 width: 0;
 }
 
-#sk-container-id-18 div.sk-serial {
+#sk-container-id-26 div.sk-serial {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -3826,12 +3826,12 @@ padding-left: 1em;
 }
 
 
-#sk-container-id-18 div.sk-toggleable {
+#sk-container-id-26 div.sk-toggleable {
 
 background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-18 label.sk-toggleable__label {
+#sk-container-id-26 label.sk-toggleable__label {
 cursor: pointer;
 display: block;
 width: 100%;
@@ -3840,18 +3840,18 @@ padding: 0.5em;
 box-sizing: border-box;
 text-align: center;
 }
-#sk-container-id-18 label.sk-toggleable__label-arrow:before {
+#sk-container-id-26 label.sk-toggleable__label-arrow:before {
 
 content: "▸";
 float: left;
 margin-right: 0.25em;
 color: var(--sklearn-color-icon);
 }
-#sk-container-id-18 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-26 label.sk-toggleable__label-arrow:hover:before {
 color: var(--sklearn-color-text);
 }
 
-#sk-container-id-18 div.sk-toggleable__content {
+#sk-container-id-26 div.sk-toggleable__content {
 max-height: 0;
 max-width: 0;
 overflow: hidden;
@@ -3859,75 +3859,75 @@ text-align: left;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-18 div.sk-toggleable__content.fitted {
+#sk-container-id-26 div.sk-toggleable__content.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-18 div.sk-toggleable__content pre {
+#sk-container-id-26 div.sk-toggleable__content pre {
 margin: 0.2em;
 border-radius: 0.25em;
 color: var(--sklearn-color-text);
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-18 div.sk-toggleable__content.fitted pre {
+#sk-container-id-26 div.sk-toggleable__content.fitted pre {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-18 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-26 input.sk-toggleable__control:checked~div.sk-toggleable__content {
 
 max-height: 200px;
 max-width: 100%;
 overflow: auto;
 }
-#sk-container-id-18 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-26 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
 content: "▾";
 }
 
-#sk-container-id-18 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-18 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
 
-#sk-container-id-18 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-18 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-26 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
-#sk-container-id-18 div.sk-label label.sk-toggleable__label,
-#sk-container-id-18 div.sk-label label {
+#sk-container-id-26 div.sk-label label.sk-toggleable__label,
+#sk-container-id-26 div.sk-label label {
 
 color: var(--sklearn-color-text-on-default-background);
 }
 
-#sk-container-id-18 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-26 div.sk-label:hover label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-18 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-26 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-18 div.sk-label label {
+#sk-container-id-26 div.sk-label label {
 font-family: monospace;
 font-weight: bold;
 display: inline-block;
 line-height: 1.2em;
 }
-#sk-container-id-18 div.sk-label-container {
+#sk-container-id-26 div.sk-label-container {
 text-align: center;
 }
 
-#sk-container-id-18 div.sk-estimator {
+#sk-container-id-26 div.sk-estimator {
 font-family: monospace;
 border: 1px dotted var(--sklearn-color-border-box);
 border-radius: 0.25em;
@@ -3936,16 +3936,16 @@ margin-bottom: 0.5em;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-18 div.sk-estimator.fitted {
+#sk-container-id-26 div.sk-estimator.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-18 div.sk-estimator:hover {
+#sk-container-id-26 div.sk-estimator:hover {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-18 div.sk-estimator.fitted:hover {
+#sk-container-id-26 div.sk-estimator.fitted:hover {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -4022,7 +4022,7 @@ display: block;
 }
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-18 a.estimator_doc_link {
+#sk-container-id-26 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -4037,25 +4037,25 @@ display: block;
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-18 a.estimator_doc_link.fitted {
+#sk-container-id-26 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-18 a.estimator_doc_link:hover {
+#sk-container-id-26 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-18 a.estimator_doc_link.fitted:hover {
+#sk-container-id-26 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-18" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+</style><div id="sk-container-id-26" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                                   OneHotEncoder(drop=&#39;first&#39;,
                                                                 sparse_output=False),
@@ -4064,7 +4064,7 @@ display: block;
                                                   StandardScaler(),
                                                   [&#39;Gr Liv Area&#39;,
                                                    &#39;TotRms AbvGrd&#39;])])),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-125" type="checkbox"><label for="sk-estimator-id-125" class="sk-toggleable__label  sk-toggleable__label-arrow ">  Pipeline<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+                (&#39;linear_regression&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-187" type="checkbox"><label for="sk-estimator-id-187" class="sk-toggleable__label  sk-toggleable__label-arrow ">  Pipeline<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                                   OneHotEncoder(drop=&#39;first&#39;,
                                                                 sparse_output=False),
@@ -4073,15 +4073,15 @@ display: block;
                                                   StandardScaler(),
                                                   [&#39;Gr Liv Area&#39;,
                                                    &#39;TotRms AbvGrd&#39;])])),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-126" type="checkbox"><label for="sk-estimator-id-126" class="sk-toggleable__label  sk-toggleable__label-arrow "> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[(&#39;dummify&#39;,
+                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-188" type="checkbox"><label for="sk-estimator-id-188" class="sk-toggleable__label  sk-toggleable__label-arrow "> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                  OneHotEncoder(drop=&#39;first&#39;,
                                                sparse_output=False),
                                  [&#39;Bldg Type&#39;]),
                                 (&#39;standardize&#39;, StandardScaler(),
-                                 [&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-127" type="checkbox"><label for="sk-estimator-id-127" class="sk-toggleable__label  sk-toggleable__label-arrow ">dummify</label><div class="sk-toggleable__content "><pre>[&#39;Bldg Type&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-128" type="checkbox"><label for="sk-estimator-id-128" class="sk-toggleable__label  sk-toggleable__label-arrow "> OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder(drop=&#39;first&#39;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-129" type="checkbox"><label for="sk-estimator-id-129" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardize</label><div class="sk-toggleable__content "><pre>[&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-130" type="checkbox"><label for="sk-estimator-id-130" class="sk-toggleable__label  sk-toggleable__label-arrow "> StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-131" type="checkbox"><label for="sk-estimator-id-131" class="sk-toggleable__label  sk-toggleable__label-arrow "> LinearRegression<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content "><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
+                                 [&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-189" type="checkbox"><label for="sk-estimator-id-189" class="sk-toggleable__label  sk-toggleable__label-arrow ">dummify</label><div class="sk-toggleable__content "><pre>[&#39;Bldg Type&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-190" type="checkbox"><label for="sk-estimator-id-190" class="sk-toggleable__label  sk-toggleable__label-arrow "> OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder(drop=&#39;first&#39;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-191" type="checkbox"><label for="sk-estimator-id-191" class="sk-toggleable__label  sk-toggleable__label-arrow ">standardize</label><div class="sk-toggleable__content "><pre>[&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-192" type="checkbox"><label for="sk-estimator-id-192" class="sk-toggleable__label  sk-toggleable__label-arrow "> StandardScaler<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content "><pre>StandardScaler()</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-193" type="checkbox"><label for="sk-estimator-id-193" class="sk-toggleable__label  sk-toggleable__label-arrow "> LinearRegression<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content "><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
 </div>
 </div>
-<div id="7f274d538fba8537" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.674418Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.661516Z&quot;}" data-execution_count="63">
+<div id="7f274d538fba8537" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.739377Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.727747Z&quot;}" data-execution_count="95">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 3 - Step 1: Preprocessing with dummification</span></span>
@@ -4117,8 +4117,8 @@ display: block;
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>model3_pipeline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="63">
-<style>#sk-container-id-19 {
+<div class="cell-output cell-output-display" data-execution_count="95">
+<style>#sk-container-id-27 {
 
 --sklearn-color-text: black;
 --sklearn-color-line: gray;
@@ -4145,13 +4145,13 @@ display: block;
 --sklearn-color-icon: #878787;
 }
 }
-#sk-container-id-19 {
+#sk-container-id-27 {
 color: var(--sklearn-color-text);
 }
-#sk-container-id-19 pre {
+#sk-container-id-27 pre {
 padding: 0;
 }
-#sk-container-id-19 input.sk-hidden--visually {
+#sk-container-id-27 input.sk-hidden--visually {
 border: 0;
 clip: rect(1px 1px 1px 1px);
 clip: rect(1px, 1px, 1px, 1px);
@@ -4162,19 +4162,19 @@ padding: 0;
 position: absolute;
 width: 1px;
 }
-#sk-container-id-19 div.sk-dashed-wrapped {
+#sk-container-id-27 div.sk-dashed-wrapped {
 border: 1px dashed var(--sklearn-color-line);
 margin: 0 0.4em 0.5em 0.4em;
 box-sizing: border-box;
 padding-bottom: 0.4em;
 background-color: var(--sklearn-color-background);
 }
-#sk-container-id-19 div.sk-container {
+#sk-container-id-27 div.sk-container {
 
 display: inline-block !important;
 position: relative;
 }
-#sk-container-id-19 div.sk-text-repr-fallback {
+#sk-container-id-27 div.sk-text-repr-fallback {
 display: none;
 }
 div.sk-parallel-item,
@@ -4187,36 +4187,36 @@ background-repeat: no-repeat;
 background-position: center center;
 }
 
-#sk-container-id-19 div.sk-parallel-item::after {
+#sk-container-id-27 div.sk-parallel-item::after {
 content: "";
 width: 100%;
 border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
 flex-grow: 1;
 }
-#sk-container-id-19 div.sk-parallel {
+#sk-container-id-27 div.sk-parallel {
 display: flex;
 align-items: stretch;
 justify-content: center;
 background-color: var(--sklearn-color-background);
 position: relative;
 }
-#sk-container-id-19 div.sk-parallel-item {
+#sk-container-id-27 div.sk-parallel-item {
 display: flex;
 flex-direction: column;
 }
-#sk-container-id-19 div.sk-parallel-item:first-child::after {
+#sk-container-id-27 div.sk-parallel-item:first-child::after {
 align-self: flex-end;
 width: 50%;
 }
-#sk-container-id-19 div.sk-parallel-item:last-child::after {
+#sk-container-id-27 div.sk-parallel-item:last-child::after {
 align-self: flex-start;
 width: 50%;
 }
-#sk-container-id-19 div.sk-parallel-item:only-child::after {
+#sk-container-id-27 div.sk-parallel-item:only-child::after {
 width: 0;
 }
 
-#sk-container-id-19 div.sk-serial {
+#sk-container-id-27 div.sk-serial {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -4226,12 +4226,12 @@ padding-left: 1em;
 }
 
 
-#sk-container-id-19 div.sk-toggleable {
+#sk-container-id-27 div.sk-toggleable {
 
 background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-19 label.sk-toggleable__label {
+#sk-container-id-27 label.sk-toggleable__label {
 cursor: pointer;
 display: block;
 width: 100%;
@@ -4240,18 +4240,18 @@ padding: 0.5em;
 box-sizing: border-box;
 text-align: center;
 }
-#sk-container-id-19 label.sk-toggleable__label-arrow:before {
+#sk-container-id-27 label.sk-toggleable__label-arrow:before {
 
 content: "▸";
 float: left;
 margin-right: 0.25em;
 color: var(--sklearn-color-icon);
 }
-#sk-container-id-19 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-27 label.sk-toggleable__label-arrow:hover:before {
 color: var(--sklearn-color-text);
 }
 
-#sk-container-id-19 div.sk-toggleable__content {
+#sk-container-id-27 div.sk-toggleable__content {
 max-height: 0;
 max-width: 0;
 overflow: hidden;
@@ -4259,75 +4259,75 @@ text-align: left;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-19 div.sk-toggleable__content.fitted {
+#sk-container-id-27 div.sk-toggleable__content.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-19 div.sk-toggleable__content pre {
+#sk-container-id-27 div.sk-toggleable__content pre {
 margin: 0.2em;
 border-radius: 0.25em;
 color: var(--sklearn-color-text);
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-19 div.sk-toggleable__content.fitted pre {
+#sk-container-id-27 div.sk-toggleable__content.fitted pre {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-19 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-27 input.sk-toggleable__control:checked~div.sk-toggleable__content {
 
 max-height: 200px;
 max-width: 100%;
 overflow: auto;
 }
-#sk-container-id-19 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-27 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
 content: "▾";
 }
 
-#sk-container-id-19 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-27 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-19 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-27 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
 
-#sk-container-id-19 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-27 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-19 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-27 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
-#sk-container-id-19 div.sk-label label.sk-toggleable__label,
-#sk-container-id-19 div.sk-label label {
+#sk-container-id-27 div.sk-label label.sk-toggleable__label,
+#sk-container-id-27 div.sk-label label {
 
 color: var(--sklearn-color-text-on-default-background);
 }
 
-#sk-container-id-19 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-27 div.sk-label:hover label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-19 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-27 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-19 div.sk-label label {
+#sk-container-id-27 div.sk-label label {
 font-family: monospace;
 font-weight: bold;
 display: inline-block;
 line-height: 1.2em;
 }
-#sk-container-id-19 div.sk-label-container {
+#sk-container-id-27 div.sk-label-container {
 text-align: center;
 }
 
-#sk-container-id-19 div.sk-estimator {
+#sk-container-id-27 div.sk-estimator {
 font-family: monospace;
 border: 1px dotted var(--sklearn-color-border-box);
 border-radius: 0.25em;
@@ -4336,16 +4336,16 @@ margin-bottom: 0.5em;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-19 div.sk-estimator.fitted {
+#sk-container-id-27 div.sk-estimator.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-19 div.sk-estimator:hover {
+#sk-container-id-27 div.sk-estimator:hover {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-19 div.sk-estimator.fitted:hover {
+#sk-container-id-27 div.sk-estimator.fitted:hover {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -4422,7 +4422,7 @@ display: block;
 }
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-19 a.estimator_doc_link {
+#sk-container-id-27 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -4437,25 +4437,25 @@ display: block;
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-19 a.estimator_doc_link.fitted {
+#sk-container-id-27 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-19 a.estimator_doc_link:hover {
+#sk-container-id-27 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-19 a.estimator_doc_link.fitted:hover {
+#sk-container-id-27 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-19" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+</style><div id="sk-container-id-27" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(remainder=&#39;passthrough&#39;,
                                    transformers=[(&#39;dummify&#39;,
                                                   OneHotEncoder(drop=&#39;first&#39;,
@@ -4471,7 +4471,7 @@ display: block;
                                                    &#39;dummify__Bldg Type_Twnhs&#39;,
                                                    &#39;dummify__Bldg &#39;
                                                    &#39;Type_TwnhsE&#39;])])),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-132" type="checkbox"><label for="sk-estimator-id-132" class="sk-toggleable__label  sk-toggleable__label-arrow ">  Pipeline<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+                (&#39;linear_regression&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-194" type="checkbox"><label for="sk-estimator-id-194" class="sk-toggleable__label  sk-toggleable__label-arrow ">  Pipeline<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link ">i<span>Not fitted</span></span></label><div class="sk-toggleable__content "><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(remainder=&#39;passthrough&#39;,
                                    transformers=[(&#39;dummify&#39;,
                                                   OneHotEncoder(drop=&#39;first&#39;,
@@ -4487,21 +4487,21 @@ display: block;
                                                    &#39;dummify__Bldg Type_Twnhs&#39;,
                                                    &#39;dummify__Bldg &#39;
                                                    &#39;Type_TwnhsE&#39;])])),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-133" type="checkbox"><label for="sk-estimator-id-133" class="sk-toggleable__label  sk-toggleable__label-arrow "> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(remainder=&#39;passthrough&#39;,
+                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-195" type="checkbox"><label for="sk-estimator-id-195" class="sk-toggleable__label  sk-toggleable__label-arrow "> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(remainder=&#39;passthrough&#39;,
                   transformers=[(&#39;dummify&#39;,
                                  OneHotEncoder(drop=&#39;first&#39;,
                                                sparse_output=False),
-                                 [&#39;Bldg Type&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-134" type="checkbox"><label for="sk-estimator-id-134" class="sk-toggleable__label  sk-toggleable__label-arrow ">dummify</label><div class="sk-toggleable__content "><pre>[&#39;Bldg Type&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-135" type="checkbox"><label for="sk-estimator-id-135" class="sk-toggleable__label  sk-toggleable__label-arrow "> OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder(drop=&#39;first&#39;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-136" type="checkbox"><label for="sk-estimator-id-136" class="sk-toggleable__label  sk-toggleable__label-arrow ">remainder</label><div class="sk-toggleable__content "><pre></pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-137" type="checkbox"><label for="sk-estimator-id-137" class="sk-toggleable__label  sk-toggleable__label-arrow ">passthrough</label><div class="sk-toggleable__content "><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-138" type="checkbox"><label for="sk-estimator-id-138" class="sk-toggleable__label  sk-toggleable__label-arrow "> interaction_terms: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for interaction_terms: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[(&#39;interaction&#39;,
+                                 [&#39;Bldg Type&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-196" type="checkbox"><label for="sk-estimator-id-196" class="sk-toggleable__label  sk-toggleable__label-arrow ">dummify</label><div class="sk-toggleable__content "><pre>[&#39;Bldg Type&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-197" type="checkbox"><label for="sk-estimator-id-197" class="sk-toggleable__label  sk-toggleable__label-arrow "> OneHotEncoder<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content "><pre>OneHotEncoder(drop=&#39;first&#39;, sparse_output=False)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-198" type="checkbox"><label for="sk-estimator-id-198" class="sk-toggleable__label  sk-toggleable__label-arrow ">remainder</label><div class="sk-toggleable__content "><pre></pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-199" type="checkbox"><label for="sk-estimator-id-199" class="sk-toggleable__label  sk-toggleable__label-arrow ">passthrough</label><div class="sk-toggleable__content "><pre>passthrough</pre></div> </div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-200" type="checkbox"><label for="sk-estimator-id-200" class="sk-toggleable__label  sk-toggleable__label-arrow "> interaction_terms: ColumnTransformer<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for interaction_terms: ColumnTransformer</span></a></label><div class="sk-toggleable__content "><pre>ColumnTransformer(transformers=[(&#39;interaction&#39;,
                                  PolynomialFeatures(include_bias=False,
                                                     interaction_only=True),
                                  [&#39;remainder__Gr Liv Area&#39;,
                                   &#39;dummify__Bldg Type_2fmCon&#39;,
                                   &#39;dummify__Bldg Type_Duplex&#39;,
                                   &#39;dummify__Bldg Type_Twnhs&#39;,
-                                  &#39;dummify__Bldg Type_TwnhsE&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-139" type="checkbox"><label for="sk-estimator-id-139" class="sk-toggleable__label  sk-toggleable__label-arrow ">interaction</label><div class="sk-toggleable__content "><pre>[&#39;remainder__Gr Liv Area&#39;, &#39;dummify__Bldg Type_2fmCon&#39;, &#39;dummify__Bldg Type_Duplex&#39;, &#39;dummify__Bldg Type_Twnhs&#39;, &#39;dummify__Bldg Type_TwnhsE&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-140" type="checkbox"><label for="sk-estimator-id-140" class="sk-toggleable__label  sk-toggleable__label-arrow "> PolynomialFeatures<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">?<span>Documentation for PolynomialFeatures</span></a></label><div class="sk-toggleable__content "><pre>PolynomialFeatures(include_bias=False, interaction_only=True)</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-141" type="checkbox"><label for="sk-estimator-id-141" class="sk-toggleable__label  sk-toggleable__label-arrow "> LinearRegression<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content "><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
+                                  &#39;dummify__Bldg Type_TwnhsE&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-201" type="checkbox"><label for="sk-estimator-id-201" class="sk-toggleable__label  sk-toggleable__label-arrow ">interaction</label><div class="sk-toggleable__content "><pre>[&#39;remainder__Gr Liv Area&#39;, &#39;dummify__Bldg Type_2fmCon&#39;, &#39;dummify__Bldg Type_Duplex&#39;, &#39;dummify__Bldg Type_Twnhs&#39;, &#39;dummify__Bldg Type_TwnhsE&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-202" type="checkbox"><label for="sk-estimator-id-202" class="sk-toggleable__label  sk-toggleable__label-arrow "> PolynomialFeatures<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">?<span>Documentation for PolynomialFeatures</span></a></label><div class="sk-toggleable__content "><pre>PolynomialFeatures(include_bias=False, interaction_only=True)</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator  sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-203" type="checkbox"><label for="sk-estimator-id-203" class="sk-toggleable__label  sk-toggleable__label-arrow "> LinearRegression<a class="sk-estimator-doc-link " rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content "><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
 </div>
 </div>
-<div id="932fcb312af3e21e" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.738774Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.735883Z&quot;}" data-execution_count="64">
+<div id="932fcb312af3e21e" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.749801Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.746387Z&quot;}" data-execution_count="96">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Preprocess - One-hot encode `Bldg Type`, pass through `Gr Liv Area` and `TotRms AbvGrd`</span></span>
@@ -4533,7 +4533,7 @@ display: block;
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6004fd1dab1e1909" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.808898Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.796287Z&quot;}" data-execution_count="65">
+<div id="6004fd1dab1e1909" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.825622Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.811983Z&quot;}" data-execution_count="97">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Fit and transform using the ColumnTransformer to get initial feature names</span></span>
@@ -4561,7 +4561,7 @@ display: block;
       dtype=&#39;object&#39;)</code></pre>
 </div>
 </div>
-<div id="b4423669dc9492dc" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T02:58:00.962607Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.926124Z&quot;}" data-execution_count="66">
+<div id="b4423669dc9492dc" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:00.983701Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:00.947665Z&quot;}" data-execution_count="98">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of models to iterate over</span></span>
@@ -4584,7 +4584,7 @@ display: block;
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Display RMSE results in a DataFrame for easy comparison</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rmse_results, columns<span class="op">=</span>[<span class="st">&quot;Model&quot;</span>, <span class="st">&quot;RMSE&quot;</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="98">
 <div>
 
 
@@ -4627,6 +4627,75 @@ display: block;
 </section>
 </section>
 <section id="p.a.-1" class="level1">
+<h1>13.3.2 P.A.</h1>
+<section id="once-again-consider-four-modeling-options-for-house-price" class="level2">
+<h2 class="anchored" data-anchor-id="once-again-consider-four-modeling-options-for-house-price">Once again consider four modeling options for house price:</h2>
+<ul>
+<li>Using only the size and number of rooms.</li>
+<li>Using size, number of rooms, and building type.</li>
+<li>Using size and building type, and their interaction.</li>
+<li>Using a 5-degree polynomial on size, a 5-degree polynomial on number of rooms, and also building type.</li>
+</ul>
+<p>Use cross_val_score with the pipelines you made earlier to find the cross-validated root mean squared error for each model.</p>
+<p>Which do you prefer? Does this agree with your conclusion from earlier?</p>
+<p>Based on the cross-validated RMSE values, I would prefer Model 3, as it exhibits the lowest RMSE at approximately 53,430.92, suggesting that it offers the best predictive performance among the four models. Model 3’s inclusion of interaction terms between size and building type likely captures complex relationships that the other models miss, contributing to its improved accuracy. This preference agrees with the initial results from the test set predictions, where Model 3 similarly performed well. The agreement between the cross-validation and initial evaluation further strengthens confidence in Model 3 as the best option.</p>
+<div id="a4626bdf0727bb58" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:16:01.241834Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:01.000335Z&quot;}" data-execution_count="99">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cv_rmse_results <span class="op">=</span> []</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cross-validation RMSE calculation for each model</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, pipeline <span class="kw">in</span> <span class="bu">zip</span>(model_names, pipelines):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use cross_val_score with neg_root_mean_squared_error scoring</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> cross_val_score(pipeline, X, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;neg_root_mean_squared_error&#39;</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    mean_rmse <span class="op">=</span> <span class="op">-</span>np.mean(scores)  <span class="co"># Take negative of the mean because scores are negative</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    cv_rmse_results.append((name, mean_rmse))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(cv_rmse_results, columns<span class="op">=</span>[<span class="st">&quot;Model&quot;</span>, <span class="st">&quot;Cross-Validated RMSE&quot;</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="99">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Model</th>
+<th data-quarto-table-cell-role="th">Cross-Validated RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Model 1</td>
+<td>55806.326349</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Model 2</td>
+<td>54168.081429</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Model 3</td>
+<td>53430.921975</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Model 4</td>
+<td>55176.965943</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="p.a.-2" class="level1">
 <h1>13.3.3 P.A.</h1>
 <section id="consider-one-hundred-modeling-options-for-house-price" class="level2">
 <h2 class="anchored" data-anchor-id="consider-one-hundred-modeling-options-for-house-price">Consider one hundred modeling options for house price:</h2>
@@ -4638,41 +4707,41 @@ display: block;
 <p><em>Hint: The dictionary of possible values that you make to give to GridSearchCV will have two elements instead of one.</em></p>
 <section id="q1-which-model-performed-the-best" class="level3">
 <h3 class="anchored" data-anchor-id="q1-which-model-performed-the-best">Q1: Which model performed the best?</h3>
-<div id="c25ac1fcf3e54c9b" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:00:33.345131Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T02:58:00.980343Z&quot;}" data-execution_count="67">
+<div id="c25ac1fcf3e54c9b" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:18:55.138196Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:16:01.347774Z&quot;}" data-execution_count="100">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_ames[[<span class="st">&quot;Gr Liv Area&quot;</span>, <span class="st">&quot;TotRms AbvGrd&quot;</span>, <span class="st">&quot;Bldg Type&quot;</span>]]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_ames[<span class="st">&quot;SalePrice&quot;</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Column transformer for preprocessing</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ColumnTransformer(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;dummify&quot;</span>, OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">&#39;ignore&#39;</span>), [<span class="st">&quot;Bldg Type&quot;</span>]),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;scaler&quot;</span>, StandardScaler(), [<span class="st">&quot;Gr Liv Area&quot;</span>, <span class="st">&quot;TotRms AbvGrd&quot;</span>])</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pipeline for regression with polynomial features</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>lr_pipeline <span class="op">=</span> Pipeline(</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;preprocessing&quot;</span>, ct),</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;polynomial&quot;</span>, PolynomialFeatures()),</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;linear_regression&quot;</span>, LinearRegression())</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># GridSearchCV parameter grid</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;polynomial__degree&quot;</span>: np.arange(<span class="dv">1</span>, <span class="dv">11</span>),  <span class="co"># Degrees 1 through 10</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;preprocessing__scaler__with_mean&quot;</span>: [<span class="va">True</span>, <span class="va">False</span>]  <span class="co"># Control centering during scaling</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the grid search</span></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(lr_pipeline, param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&quot;r2&quot;</span>)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>grid_search.fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_ames[[<span class="st">&quot;Gr Liv Area&quot;</span>, <span class="st">&quot;TotRms AbvGrd&quot;</span>, <span class="st">&quot;Bldg Type&quot;</span>]]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_ames[<span class="st">&quot;SalePrice&quot;</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Column transformer for preprocessing</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> ColumnTransformer(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;dummify&quot;</span>, OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">&#39;ignore&#39;</span>), [<span class="st">&quot;Bldg Type&quot;</span>]),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;scaler&quot;</span>, StandardScaler(), [<span class="st">&quot;Gr Liv Area&quot;</span>, <span class="st">&quot;TotRms AbvGrd&quot;</span>])</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Pipeline for regression with polynomial features</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>lr_pipeline <span class="op">=</span> Pipeline(</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;preprocessing&quot;</span>, ct),</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;polynomial&quot;</span>, PolynomialFeatures()),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;linear_regression&quot;</span>, LinearRegression())</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># GridSearchCV parameter grid</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;polynomial__degree&quot;</span>: np.arange(<span class="dv">1</span>, <span class="dv">11</span>),  <span class="co"># Degrees 1 through 10</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;preprocessing__scaler__with_mean&quot;</span>: [<span class="va">True</span>, <span class="va">False</span>]  <span class="co"># Control centering during scaling</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the grid search</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(lr_pipeline, param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&quot;r2&quot;</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>grid_search.fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="67">
-<style>#sk-container-id-20 {
+<div class="cell-output cell-output-display" data-execution_count="100">
+<style>#sk-container-id-28 {
 
 --sklearn-color-text: black;
 --sklearn-color-line: gray;
@@ -4699,13 +4768,13 @@ display: block;
 --sklearn-color-icon: #878787;
 }
 }
-#sk-container-id-20 {
+#sk-container-id-28 {
 color: var(--sklearn-color-text);
 }
-#sk-container-id-20 pre {
+#sk-container-id-28 pre {
 padding: 0;
 }
-#sk-container-id-20 input.sk-hidden--visually {
+#sk-container-id-28 input.sk-hidden--visually {
 border: 0;
 clip: rect(1px 1px 1px 1px);
 clip: rect(1px, 1px, 1px, 1px);
@@ -4716,19 +4785,19 @@ padding: 0;
 position: absolute;
 width: 1px;
 }
-#sk-container-id-20 div.sk-dashed-wrapped {
+#sk-container-id-28 div.sk-dashed-wrapped {
 border: 1px dashed var(--sklearn-color-line);
 margin: 0 0.4em 0.5em 0.4em;
 box-sizing: border-box;
 padding-bottom: 0.4em;
 background-color: var(--sklearn-color-background);
 }
-#sk-container-id-20 div.sk-container {
+#sk-container-id-28 div.sk-container {
 
 display: inline-block !important;
 position: relative;
 }
-#sk-container-id-20 div.sk-text-repr-fallback {
+#sk-container-id-28 div.sk-text-repr-fallback {
 display: none;
 }
 div.sk-parallel-item,
@@ -4741,36 +4810,36 @@ background-repeat: no-repeat;
 background-position: center center;
 }
 
-#sk-container-id-20 div.sk-parallel-item::after {
+#sk-container-id-28 div.sk-parallel-item::after {
 content: "";
 width: 100%;
 border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
 flex-grow: 1;
 }
-#sk-container-id-20 div.sk-parallel {
+#sk-container-id-28 div.sk-parallel {
 display: flex;
 align-items: stretch;
 justify-content: center;
 background-color: var(--sklearn-color-background);
 position: relative;
 }
-#sk-container-id-20 div.sk-parallel-item {
+#sk-container-id-28 div.sk-parallel-item {
 display: flex;
 flex-direction: column;
 }
-#sk-container-id-20 div.sk-parallel-item:first-child::after {
+#sk-container-id-28 div.sk-parallel-item:first-child::after {
 align-self: flex-end;
 width: 50%;
 }
-#sk-container-id-20 div.sk-parallel-item:last-child::after {
+#sk-container-id-28 div.sk-parallel-item:last-child::after {
 align-self: flex-start;
 width: 50%;
 }
-#sk-container-id-20 div.sk-parallel-item:only-child::after {
+#sk-container-id-28 div.sk-parallel-item:only-child::after {
 width: 0;
 }
 
-#sk-container-id-20 div.sk-serial {
+#sk-container-id-28 div.sk-serial {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -4780,12 +4849,12 @@ padding-left: 1em;
 }
 
 
-#sk-container-id-20 div.sk-toggleable {
+#sk-container-id-28 div.sk-toggleable {
 
 background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-20 label.sk-toggleable__label {
+#sk-container-id-28 label.sk-toggleable__label {
 cursor: pointer;
 display: block;
 width: 100%;
@@ -4794,18 +4863,18 @@ padding: 0.5em;
 box-sizing: border-box;
 text-align: center;
 }
-#sk-container-id-20 label.sk-toggleable__label-arrow:before {
+#sk-container-id-28 label.sk-toggleable__label-arrow:before {
 
 content: "▸";
 float: left;
 margin-right: 0.25em;
 color: var(--sklearn-color-icon);
 }
-#sk-container-id-20 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-28 label.sk-toggleable__label-arrow:hover:before {
 color: var(--sklearn-color-text);
 }
 
-#sk-container-id-20 div.sk-toggleable__content {
+#sk-container-id-28 div.sk-toggleable__content {
 max-height: 0;
 max-width: 0;
 overflow: hidden;
@@ -4813,75 +4882,75 @@ text-align: left;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-20 div.sk-toggleable__content.fitted {
+#sk-container-id-28 div.sk-toggleable__content.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-20 div.sk-toggleable__content pre {
+#sk-container-id-28 div.sk-toggleable__content pre {
 margin: 0.2em;
 border-radius: 0.25em;
 color: var(--sklearn-color-text);
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-20 div.sk-toggleable__content.fitted pre {
+#sk-container-id-28 div.sk-toggleable__content.fitted pre {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-20 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-28 input.sk-toggleable__control:checked~div.sk-toggleable__content {
 
 max-height: 200px;
 max-width: 100%;
 overflow: auto;
 }
-#sk-container-id-20 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-28 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
 content: "▾";
 }
 
-#sk-container-id-20 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-28 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-20 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-28 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
 
-#sk-container-id-20 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-28 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-20 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-28 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
-#sk-container-id-20 div.sk-label label.sk-toggleable__label,
-#sk-container-id-20 div.sk-label label {
+#sk-container-id-28 div.sk-label label.sk-toggleable__label,
+#sk-container-id-28 div.sk-label label {
 
 color: var(--sklearn-color-text-on-default-background);
 }
 
-#sk-container-id-20 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-28 div.sk-label:hover label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-20 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-28 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-20 div.sk-label label {
+#sk-container-id-28 div.sk-label label {
 font-family: monospace;
 font-weight: bold;
 display: inline-block;
 line-height: 1.2em;
 }
-#sk-container-id-20 div.sk-label-container {
+#sk-container-id-28 div.sk-label-container {
 text-align: center;
 }
 
-#sk-container-id-20 div.sk-estimator {
+#sk-container-id-28 div.sk-estimator {
 font-family: monospace;
 border: 1px dotted var(--sklearn-color-border-box);
 border-radius: 0.25em;
@@ -4890,16 +4959,16 @@ margin-bottom: 0.5em;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-20 div.sk-estimator.fitted {
+#sk-container-id-28 div.sk-estimator.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-20 div.sk-estimator:hover {
+#sk-container-id-28 div.sk-estimator:hover {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-20 div.sk-estimator.fitted:hover {
+#sk-container-id-28 div.sk-estimator.fitted:hover {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -4976,7 +5045,7 @@ display: block;
 }
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-20 a.estimator_doc_link {
+#sk-container-id-28 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -4991,25 +5060,25 @@ display: block;
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-20 a.estimator_doc_link.fitted {
+#sk-container-id-28 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-20 a.estimator_doc_link:hover {
+#sk-container-id-28 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-20 a.estimator_doc_link.fitted:hover {
+#sk-container-id-28 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-20" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
+</style><div id="sk-container-id-28" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#39;preprocessing&#39;,
                                         ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                                                          OneHotEncoder(handle_unknown=&#39;ignore&#39;),
@@ -5027,7 +5096,7 @@ display: block;
                                         LinearRegression())]),
              param_grid={&#39;polynomial__degree&#39;: array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10]),
                          &#39;preprocessing__scaler__with_mean&#39;: [True, False]},
-             scoring=&#39;r2&#39;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-142" type="checkbox"><label for="sk-estimator-id-142" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">  GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(cv=5,
+             scoring=&#39;r2&#39;)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-204" type="checkbox"><label for="sk-estimator-id-204" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">  GridSearchCV<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[(&#39;preprocessing&#39;,
                                         ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                                                          OneHotEncoder(handle_unknown=&#39;ignore&#39;),
@@ -5045,7 +5114,7 @@ display: block;
                                         LinearRegression())]),
              param_grid={&#39;polynomial__degree&#39;: array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10]),
                          &#39;preprocessing__scaler__with_mean&#39;: [True, False]},
-             scoring=&#39;r2&#39;)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-143" type="checkbox"><label for="sk-estimator-id-143" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
+             scoring=&#39;r2&#39;)</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-205" type="checkbox"><label for="sk-estimator-id-205" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">best_estimator_: Pipeline</label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[(&#39;preprocessing&#39;,
                  ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                                   OneHotEncoder(handle_unknown=&#39;ignore&#39;),
                                                   [&#39;Bldg Type&#39;]),
@@ -5054,30 +5123,30 @@ display: block;
                                                   [&#39;Gr Liv Area&#39;,
                                                    &#39;TotRms AbvGrd&#39;])])),
                 (&#39;polynomial&#39;, PolynomialFeatures(degree=np.int64(3))),
-                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-144" type="checkbox"><label for="sk-estimator-id-144" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[(&#39;dummify&#39;,
+                (&#39;linear_regression&#39;, LinearRegression())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-206" type="checkbox"><label for="sk-estimator-id-206" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> preprocessing: ColumnTransformer<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[(&#39;dummify&#39;,
                                  OneHotEncoder(handle_unknown=&#39;ignore&#39;),
                                  [&#39;Bldg Type&#39;]),
                                 (&#39;scaler&#39;, StandardScaler(with_mean=False),
-                                 [&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-145" type="checkbox"><label for="sk-estimator-id-145" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">dummify</label><div class="sk-toggleable__content fitted"><pre>[&#39;Bldg Type&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-146" type="checkbox"><label for="sk-estimator-id-146" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown=&#39;ignore&#39;)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-147" type="checkbox"><label for="sk-estimator-id-147" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">scaler</label><div class="sk-toggleable__content fitted"><pre>[&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-148" type="checkbox"><label for="sk-estimator-id-148" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler(with_mean=False)</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-149" type="checkbox"><label for="sk-estimator-id-149" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> PolynomialFeatures<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">?<span>Documentation for PolynomialFeatures</span></a></label><div class="sk-toggleable__content fitted"><pre>PolynomialFeatures(degree=np.int64(3))</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-150" type="checkbox"><label for="sk-estimator-id-150" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> LinearRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div></div></div></div></div></div></div></div>
+                                 [&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;])])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-207" type="checkbox"><label for="sk-estimator-id-207" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">dummify</label><div class="sk-toggleable__content fitted"><pre>[&#39;Bldg Type&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-208" type="checkbox"><label for="sk-estimator-id-208" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> OneHotEncoder<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(handle_unknown=&#39;ignore&#39;)</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-209" type="checkbox"><label for="sk-estimator-id-209" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">scaler</label><div class="sk-toggleable__content fitted"><pre>[&#39;Gr Liv Area&#39;, &#39;TotRms AbvGrd&#39;]</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-210" type="checkbox"><label for="sk-estimator-id-210" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> StandardScaler<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></label><div class="sk-toggleable__content fitted"><pre>StandardScaler(with_mean=False)</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-211" type="checkbox"><label for="sk-estimator-id-211" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> PolynomialFeatures<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">?<span>Documentation for PolynomialFeatures</span></a></label><div class="sk-toggleable__content fitted"><pre>PolynomialFeatures(degree=np.int64(3))</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-212" type="checkbox"><label for="sk-estimator-id-212" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted"> LinearRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div></div></div></div></div></div></div></div>
 </div>
 </div>
-<div id="7fe6fe7c27a20a4b" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:00:33.369201Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:00:33.364244Z&quot;}" data-execution_count="68">
+<div id="7fe6fe7c27a20a4b" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:18:55.161896Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:18:55.156172Z&quot;}" data-execution_count="101">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cv_results <span class="op">=</span> grid_search.cv_results_</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying a selection of results</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>mean_test_scores <span class="op">=</span> cv_results[<span class="st">&#39;mean_test_score&#39;</span>]</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>)  <span class="co"># As per parameter grid</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;degrees&quot;</span>: degrees,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;mean_test_scores&quot;</span>: mean_test_scores[:<span class="bu">len</span>(degrees)]  <span class="co"># Ensure alignment</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>results_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract results</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cv_results <span class="op">=</span> grid_search.cv_results_</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying a selection of results</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>mean_test_scores <span class="op">=</span> cv_results[<span class="st">&#39;mean_test_score&#39;</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">11</span>)  <span class="co"># As per parameter grid</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;degrees&quot;</span>: degrees,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;mean_test_scores&quot;</span>: mean_test_scores[:<span class="bu">len</span>(degrees)]  <span class="co"># Ensure alignment</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>results_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="101">
 <div>
 
 
@@ -5146,12 +5215,12 @@ display: block;
 </div>
 </div>
 </div>
-<div id="64c37a18731cc7b8" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:00:33.452657Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:00:33.447345Z&quot;}" data-execution_count="69">
+<div id="64c37a18731cc7b8" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:18:55.189535Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:18:55.182713Z&quot;}" data-execution_count="102">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid_search.best_estimator_)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Best Score (R^2):&quot;</span>, grid_search.best_score_)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Best Parameters:&quot;</span>, grid_search.best_params_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grid_search.best_estimator_)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Best Score (R^2):&quot;</span>, grid_search.best_score_)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Best Parameters:&quot;</span>, grid_search.best_params_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pipeline(steps=[(&#39;preprocessing&#39;,
@@ -5168,12 +5237,12 @@ Best Score (R^2): 0.5461269130054623
 Best Parameters: {&#39;polynomial__degree&#39;: np.int64(3), &#39;preprocessing__scaler__with_mean&#39;: False}</code></pre>
 </div>
 </div>
-<div id="2605f929c2ed497" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:00:33.562478Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:00:33.559134Z&quot;}" data-execution_count="70">
+<div id="2605f929c2ed497" class="cell" data-executetime="{&quot;end_time&quot;:&quot;2024-11-09T03:18:55.215457Z&quot;,&quot;start_time&quot;:&quot;2024-11-09T03:18:55.212502Z&quot;}" data-execution_count="103">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sanity Check!</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>num_fits <span class="op">=</span> <span class="bu">len</span>(cv_results[<span class="st">&#39;params&#39;</span>]) <span class="op">*</span> <span class="dv">5</span>  <span class="co"># Multiply by number of cross-validation folds</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Total model fitting steps: </span><span class="sc">{</span>num_fits<span class="sc">}</span><span class="ss">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sanity Check!</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>num_fits <span class="op">=</span> <span class="bu">len</span>(cv_results[<span class="st">&#39;params&#39;</span>]) <span class="op">*</span> <span class="dv">5</span>  <span class="co"># Multiply by number of cross-validation folds</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Total model fitting steps: </span><span class="sc">{</span>num_fits<span class="sc">}</span><span class="ss">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Total model fitting steps: 100</code></pre>
